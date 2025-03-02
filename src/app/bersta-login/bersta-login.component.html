@@ -1,0 +1,30 @@
+<form [formGroup]="formGroup">
+  <p>
+    <mat-form-field>
+      <input matInput placeholder="Bersta URL" formControlName="berstaUrl" (keydown.enter)="login()">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Username" formControlName="username" (keydown.enter)="login()">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input [type]="showPWD ? 'text':'password'" matInput placeholder="Password" formControlName="password" (keydown.enter)="login()">
+      <button mat-icon-button matSuffix (click)="toggleVisibility();$event.preventDefault()">
+        <mat-icon>{{ showPWD ? 'visibility' : 'visibility_off' }}</mat-icon>
+      </button>
+    </mat-form-field>
+  </p>
+  <button
+    mat-raised-button
+    matRipple
+    (click)="login()"
+  >Log in
+  </button
+  >
+  @if (berstaSignalStore.isLogggedIn()) {
+    Logged in 🎉
+  }
+</form>
