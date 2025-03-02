@@ -2,16 +2,9 @@ import {patchState, signalStore, withComputed, withMethods, withState} from '@ng
 import {computed, inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {firstValueFrom} from 'rxjs';
+import {BerstaService} from './common/bersta.service';
+import {BerstaLoginHttp, BerstaLoginState} from './common/berstaTypes';
 
-export type BerstaLoginState = {
-  msgKey: string,
-  token: string,
-}
-export type BerstaLoginHttp = {
-  berstaUrl: string,
-  username: string,
-  password: string,
-}
 const initBerstaState: BerstaLoginState = {
   msgKey: 'unknown',
   token: '',
@@ -20,23 +13,25 @@ export const BerstaStore = signalStore(
   {providedIn: 'root'},
   withState(initBerstaState),
   withMethods((state) => {
-    const httpClient = inject(HttpClient);
+    const berstaClient = inject(BerstaService);
     return {
       async doLogin(loginData: BerstaLoginHttp) {
-        const result: BerstaLoginState = await firstValueFrom(httpClient.post<BerstaLoginState>(loginData.berstaUrl, {
-          "username": loginData.username,
-          "password": loginData.password,
-        }));
+        const result=await berstaClient.doLogin(loginData);
         patchState(state, {
           msgKey: result.msgKey,
           token: result.token,
         })
+      },
+      async doQueryDetails(url:string, filter:string){
+         const result=await berstaClient.doQueryDetails(url, filter);
+        console.log("query result:", result);
       }
     }
   }),
   withComputed((state) => {
     return {
-      isLogggedIn: computed(() => state.msgKey() === "login.successful")
+      isLogggedIn: computed(() => state.msgKey() === "login.successful"),
+      isLogggedOut: computed(() => state.msgKey() !== "login.successful")
     }
   })
 )

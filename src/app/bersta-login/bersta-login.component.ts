@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRipple} from '@angular/material/core';
 import {BerstaStore} from '../app-signal-store';
+import {MatCard, MatCardActions, MatCardContent} from '@angular/material/card';
 
 
 @Component({
@@ -13,7 +14,7 @@ import {BerstaStore} from '../app-signal-store';
   imports: [
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule, MatButtonModule, MatIconModule, FormsModule, MatRipple
+    MatInputModule, MatButtonModule, MatIconModule, FormsModule, MatRipple, MatCard, MatCardContent, MatCardActions
   ],
   templateUrl: './bersta-login.component.html',
   styleUrl: './bersta-login.component.scss'
