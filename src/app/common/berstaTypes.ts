@@ -3,16 +3,34 @@ export type BerstaLoginHttp = {
   username: string,
   password: string,
 }
-export type BerstaDetailsHttp = {
-  product: {
+export type BerstaProductPriceDetail={
+  singleUnitPrice: number;
+}
+export type BerstaProductDetail = {
+    sid:number,
     name: string,
     netWeight: number,
     producer: string,
-    priceListPos: [],
-  },
+    priceListPos: BerstaProductPriceDetail[],
+}
+export const  createEmptyBerstaProductDetail = ():BerstaProductDetail => {
+  return {
+    sid:0,
+    name: '',
+    netWeight: 0,
+    producer: '',
+    priceListPos:[{singleUnitPrice:0}]
+  };
+}
+export const  createEmptyBerstaProduct = ():BerstaProductDetail[] => {
+  return [createEmptyBerstaProductDetail()];
+}
+export type BerstaProductDetailHttp = {
+  products: BerstaProductDetail[]
 }
 
 export type BerstaLoginState = {
   msgKey: string,
   token: string,
+  currentProduct: BerstaProductDetail[],
 }

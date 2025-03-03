@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {firstValueFrom} from 'rxjs';
-import {BerstaDetailsHttp, BerstaLoginHttp, BerstaLoginState} from './berstaTypes';
+import {BerstaProductDetail, BerstaLoginHttp, BerstaLoginState, BerstaProductDetailHttp} from './berstaTypes';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class BerstaService {
   }
 
   doQueryDetails(url: string, filter: string) {
-    return firstValueFrom(this.httpClient.post<BerstaDetailsHttp>(url,
+    return firstValueFrom(this.httpClient.post<BerstaProductDetailHttp>(url,
       {
         "searchCriteria": filter,
         "startIndex": 1,

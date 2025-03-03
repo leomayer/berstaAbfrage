@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import {AngularTitleComponent} from './angular-title/angular-title.component';
 import {BerstaLoginComponent} from './bersta-login/bersta-login.component';
 import {BerstaDetailAbfrageComponent} from './bersta-detail-abfrage/bersta-detail-abfrage.component';

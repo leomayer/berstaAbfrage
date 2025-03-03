@@ -3,11 +3,12 @@ import {computed, inject} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {firstValueFrom} from 'rxjs';
 import {BerstaService} from './common/bersta.service';
-import {BerstaLoginHttp, BerstaLoginState} from './common/berstaTypes';
+import {BerstaProductDetail, BerstaLoginHttp, BerstaLoginState, createEmptyBerstaProduct} from './common/berstaTypes';
 
 const initBerstaState: BerstaLoginState = {
   msgKey: 'unknown',
   token: '',
+  currentProduct: [],
 }
 export const BerstaStore = signalStore(
   {providedIn: 'root'},
@@ -24,7 +25,7 @@ export const BerstaStore = signalStore(
       },
       async doQueryDetails(url:string, filter:string){
          const result=await berstaClient.doQueryDetails(url, filter);
-        console.log("query result:", result);
+         patchState(state, {currentProduct: result.products});
       }
     }
   }),

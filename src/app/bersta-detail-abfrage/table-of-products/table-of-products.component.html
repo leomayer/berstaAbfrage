@@ -1,0 +1,33 @@
+<table mat-table matSort class="mat-elevation-z8" matSortActive="name" matSortDisableClear [dataSource]="dataSource">
+  <!-- Spalte: Name -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let product"> {{ product.name }}</td>
+  </ng-container>
+  <!-- Spalte: Nettogewicht -->
+  <ng-container matColumnDef="netWeight">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Netto-gewicht</th>
+    <td mat-cell *matCellDef="let product"> {{ product.netWeight }}</td>
+  </ng-container>
+  <!-- Spalte: Hersteller -->
+  <ng-container matColumnDef="producer">
+    <th mat-header-cell mat-sort-header *matHeaderCellDef>Hersteller</th>
+    <td mat-cell *matCellDef="let product"> {{ product.producer }}</td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="setClickedRow(row)"
+      [class.bersta-row-is-clicked]="clickedRow.sid===row.sid"
+  ></tr>
+  <tr *matNoDataRow matColumnDef="noData">
+    <td class="mat-cell" colspan="9999">
+      Keine Daten gefunden
+    </td>
+  </tr>
+</table>
+
+@if(clickedRow.sid){
+  <p>Ausgewählter Netto-Preis: € {{clickedRow.priceListPos[0].singleUnitPrice}}</p>
+}
