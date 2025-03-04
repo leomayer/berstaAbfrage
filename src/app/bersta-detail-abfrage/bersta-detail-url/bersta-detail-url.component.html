@@ -1,18 +1,23 @@
 <div>
-  <mat-form-field>
-    <mat-label>Abfrage URL</mat-label>
-    <input matInput [(ngModel)]="queryUrl" [disabled]="berstaStore.isLogggedOut()">
-  </mat-form-field>
+	<mat-form-field>
+		<mat-label>Abfrage URL</mat-label>
+		<input matInput [(ngModel)]="queryUrl" [disabled]="berstaStore.disableQuery4Details()" />
+	</mat-form-field>
 
-  <button mat-flat-button (click)="queryDetail()" [disabled]="berstaStore.isLogggedOut()">Abfrage</button>
+	<button mat-flat-button (click)="queryDetail()" [disabled]="berstaStore.disableQuery4Details()">Abfrage</button>
 </div>
 <mat-form-field>
-  <mat-label>Suchfeld</mat-label>
-  <input matInput [(ngModel)]="searchFilter" (keydown.enter)="queryDetail()" [disabled]="berstaStore.isLogggedOut()">
-  @if (searchFilter) {
-    <button matSuffix mat-icon-button aria-label="Clear" (click)="searchFilter=''"
-            [disabled]="berstaStore.isLogggedOut()">
-      <mat-icon>close</mat-icon>
-    </button>
-  }
+	<mat-label>Suchfeld</mat-label>
+	<input matInput [(ngModel)]="searchFilter" (keydown.enter)="queryDetail()" [disabled]="berstaStore.disableQuery4Details()" />
+	@if (searchFilter) {
+		<button
+			mat-icon-button
+			matSuffix
+			(click)="searchFilter = ''"
+			[disabled]="berstaStore.disableQuery4Details()"
+			aria-label="Clear"
+		>
+			<mat-icon>close</mat-icon>
+		</button>
+	}
 </mat-form-field>

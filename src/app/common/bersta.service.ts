@@ -1,30 +1,33 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {firstValueFrom} from 'rxjs';
-import {BerstaProductDetail, BerstaLoginHttp, BerstaLoginState, BerstaProductDetailHttp} from './berstaTypes';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+
+import { BerstaLoginHttp, BerstaProductDetail, BerstaProductDetailHttp, BerstaRequestStates } from './berstaTypes';
+
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class BerstaService {
-  httpClient = inject(HttpClient);
+	httpClient = inject(HttpClient);
 
-   doLogin(loginData: BerstaLoginHttp) {
-    return firstValueFrom(this.httpClient.post<BerstaLoginState>(loginData.berstaUrl, {
-      "username": loginData.username,
-      "password": loginData.password,
-    }));
-  }
+	doLogin(loginData: BerstaLoginHttp) {
+		return firstValueFrom(
+			this.httpClient.post<BerstaRequestStates>(loginData.berstaUrl, {
+				username: loginData.username,
+				password: loginData.password,
+			}),
+		);
+	}
 
-  doQueryDetails(url: string, filter: string) {
-    return firstValueFrom(this.httpClient.post<BerstaProductDetailHttp>(url,
-      {
-        "searchCriteria": filter,
-        "startIndex": 1,
-        "numDataSets": 20,
-        "loadArticleTourUsage":false,
-      }
-    ))
-
-  }
+	doQueryDetails(url: string, filter: string) {
+		return firstValueFrom(
+			this.httpClient.post<BerstaProductDetailHttp>(url, {
+				searchCriteria: filter,
+				startIndex: 1,
+				numDataSets: 20,
+				loadArticleTourUsage: false,
+			}),
+		);
+	}
 }

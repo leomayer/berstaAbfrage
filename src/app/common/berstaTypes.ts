@@ -1,36 +1,37 @@
 export type BerstaLoginHttp = {
-  berstaUrl: string,
-  username: string,
-  password: string,
-}
-export type BerstaProductPriceDetail={
-  singleUnitPrice: number;
-}
+	berstaUrl: string;
+	username: string;
+	password: string;
+};
+export type BerstaProductPriceDetail = {
+	singleUnitPrice: number;
+};
 export type BerstaProductDetail = {
-    sid:number,
-    name: string,
-    netWeight: number,
-    producer: string,
-    priceListPos: BerstaProductPriceDetail[],
-}
-export const  createEmptyBerstaProductDetail = ():BerstaProductDetail => {
-  return {
-    sid:0,
-    name: '',
-    netWeight: 0,
-    producer: '',
-    priceListPos:[{singleUnitPrice:0}]
-  };
-}
-export const  createEmptyBerstaProduct = ():BerstaProductDetail[] => {
-  return [createEmptyBerstaProductDetail()];
-}
+	sid: number;
+	name: string;
+	netWeight: number;
+	producer: string;
+	priceListPos: BerstaProductPriceDetail[];
+};
+export const createEmptyBerstaProductDetail = (): BerstaProductDetail => {
+	return {
+		sid: 0,
+		name: '',
+		netWeight: 0,
+		producer: '',
+		priceListPos: [{ singleUnitPrice: 0 }],
+	};
+};
+export const createEmptyBerstaProduct = (): BerstaProductDetail[] => {
+	return [createEmptyBerstaProductDetail()];
+};
 export type BerstaProductDetailHttp = {
-  products: BerstaProductDetail[]
-}
+	products: BerstaProductDetail[];
+};
 
-export type BerstaLoginState = {
-  msgKey: string,
-  token: string,
-  currentProduct: BerstaProductDetail[],
-}
+export type BerstaRequestStates = {
+	msgKey: string;
+	token: string;
+	productQueryResult: BerstaProductDetail[];
+	currentProduct: BerstaProductDetail;
+};

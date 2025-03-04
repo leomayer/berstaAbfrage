@@ -1,42 +1,33 @@
 <mat-card>
-  <mat-card-content>
-<form [formGroup]="formGroup">
-  <p>
-    <mat-form-field>
-      <mat-label>Bersta URL</mat-label>
-      <input matInput  formControlName="berstaUrl" (keydown.enter)="login()">
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input type="text" matInput  formControlName="username" (keydown.enter)="login()">
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input [type]="showPWD ? 'text':'password'" matInput  formControlName="password" (keydown.enter)="login()">
-      <button mat-icon-button matSuffix (click)="toggleVisibility();$event.preventDefault()">
-        <mat-icon>{{ showPWD ? 'visibility' : 'visibility_off' }}</mat-icon>
-      </button>
-    </mat-form-field>
-  </p>
-</form>
-  </mat-card-content>
-  <mat-card-actions align="end" [class.loginSuccess]="berstaSignalStore.isLogggedIn()">
-    @if (berstaSignalStore.isLogggedIn()) {
-      <div>
-        Logged in 🎉
-      </div>
-    }
-  <button
-    mat-raised-button
-    matRipple
-    (click)="login()"
-  >Log in
-  </button
-  >
-  </mat-card-actions>
-
+	<mat-card-content>
+		<form [formGroup]="formGroup">
+			<p>
+				<mat-form-field>
+					<mat-label>Bersta URL</mat-label>
+					<input formControlName="berstaUrl" matInput (keydown.enter)="login()" />
+				</mat-form-field>
+			</p>
+			<p>
+				<mat-form-field>
+					<mat-label>Username</mat-label>
+					<input formControlName="username" matInput (keydown.enter)="login()" type="text" />
+				</mat-form-field>
+			</p>
+			<p>
+				<mat-form-field>
+					<mat-label>Password</mat-label>
+					<input formControlName="password" matInput (keydown.enter)="login()" [type]="showPWD ? 'text' : 'password'" />
+					<button mat-icon-button matSuffix (click)="toggleVisibility(); $event.preventDefault()">
+						<mat-icon>{{ showPWD ? 'visibility' : 'visibility_off' }}</mat-icon>
+					</button>
+				</mat-form-field>
+			</p>
+		</form>
+	</mat-card-content>
+	<mat-card-actions [class.loginSuccess]="berstaSignalStore.isLogggedIn()" align="end">
+		@if (berstaSignalStore.isLogggedIn()) {
+			<div> Logged in 🎉 </div>
+		}
+		<button mat-raised-button matRipple (click)="login()">Log in </button>
+	</mat-card-actions>
 </mat-card>

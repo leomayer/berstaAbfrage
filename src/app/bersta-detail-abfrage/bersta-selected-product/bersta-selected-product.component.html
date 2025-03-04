@@ -1,0 +1,9 @@
+@if (berstaStore.isTableEntrySelect()){
+   <div> {{berstaStore.currentProduct().name}}:</div>
+    <mat-form-field>
+      <mat-label>Preis</mat-label>
+      <input [readonly]="true" matInput value="{{berstaStore.currentProduct().priceListPos[0].singleUnitPrice}}">
+    </mat-form-field>
+} @else {
+  <p> Nix ausgewählt</p>
+}

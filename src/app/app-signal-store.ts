@@ -1,38 +1,56 @@
-import {patchState, signalStore, withComputed, withMethods, withState} from '@ngrx/signals';
-import {computed, inject} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {firstValueFrom} from 'rxjs';
-import {BerstaService} from './common/bersta.service';
-import {BerstaProductDetail, BerstaLoginHttp, BerstaLoginState, createEmptyBerstaProduct} from './common/berstaTypes';
+import { computed, inject } from '@angular/core';
 
-const initBerstaState: BerstaLoginState = {
+import { BerstaService } from './common/bersta.service';
+import {
+  BerstaLoginHttp,
+  BerstaProductDetail,
+  BerstaRequestStates,
+  createEmptyBerstaProductDetail,
+} from './common/berstaTypes';
+
+import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { withRequestStatus } from './app-signal-feature-store';
+
+const initBerstaState: BerstaRequestStates = {
   msgKey: 'unknown',
   token: '',
-  currentProduct: [],
-}
+  productQueryResult: [],
+  currentProduct: createEmptyBerstaProductDetail(),
+};
 export const BerstaStore = signalStore(
-  {providedIn: 'root'},
+  { providedIn: 'root' },
   withState(initBerstaState),
+  withRequestStatus(),
   withMethods((state) => {
     const berstaClient = inject(BerstaService);
     return {
       async doLogin(loginData: BerstaLoginHttp) {
-        const result=await berstaClient.doLogin(loginData);
+        state.setPending();
+        const result = await berstaClient.doLogin(loginData);
         patchState(state, {
           msgKey: result.msgKey,
           token: result.token,
-        })
+        });
+        state.setFulfilled();
       },
-      async doQueryDetails(url:string, filter:string){
-         const result=await berstaClient.doQueryDetails(url, filter);
-         patchState(state, {currentProduct: result.products});
-      }
-    }
+      async doQueryDetails(url: string, filter: string) {
+        state.setPending();
+        const result = await berstaClient.doQueryDetails(url, filter);
+        patchState(state, { productQueryResult: result.products });
+        state.setFulfilled();
+      },
+      doSetSelectedProduct(currentProduct: BerstaProductDetail) {
+        patchState(state, { currentProduct });
+      },
+    };
   }),
   withComputed((state) => {
     return {
-      isLogggedIn: computed(() => state.msgKey() === "login.successful"),
-      isLogggedOut: computed(() => state.msgKey() !== "login.successful")
-    }
-  })
-)
+      isLogggedIn: computed(() => state.msgKey() === 'login.successful'),
+      disableQuery4Details: computed(() => state.msgKey() !== 'login.successful' || !state.isFulfilled()),
+      isProductTableEnabled: computed(() => state.msgKey() === 'login.successful' && state.isFulfilled()),
+      isTableEntrySelect: computed(() => state.currentProduct().sid > 0),
+      getSelectedProductId: computed(() => state.currentProduct().sid),
+    };
+  }),
+);

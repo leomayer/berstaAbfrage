@@ -1,12 +1,13 @@
-:host,div{
-  display: flex;
-  width: 100%;
-  flex-direction: column;
+:host,
+div {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
-div{
-  flex-direction: row;
-  gap: 8px;
+div {
+	flex-direction: row;
+	gap: 8px;
 }
-mat-form-field{
-  width: 100%;
+mat-form-field {
+	width: 100%;
 }
