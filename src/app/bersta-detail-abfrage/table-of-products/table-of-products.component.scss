@@ -9,19 +9,17 @@
 	font-weight: bold;
 }
 .disable-table {
-  background-color: mat.m2-get-color-from-palette(mat.$m2-blue-gray-palette, 600,0.2);
-  pointer-events: none;
-  cursor: wait;
-
+	cursor: wait;
+	background-color: mat.m2-get-color-from-palette(mat.$m2-blue-gray-palette, 600, 0.2);
+	pointer-events: none;
 }
-.enabled-table{
-  .mat-mdc-row .mat-mdc-cell {
-    cursor: pointer;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-  }
-  .mat-mdc-row:hover .mat-mdc-cell {
-    border-color: currentColor;
-  }
-
+.enabled-table {
+	.mat-mdc-row .mat-mdc-cell {
+		cursor: pointer;
+		border-top: 1px solid transparent;
+		border-bottom: 1px solid transparent;
+	}
+	.mat-mdc-row:hover .mat-mdc-cell {
+		border-color: currentColor;
+	}
 }

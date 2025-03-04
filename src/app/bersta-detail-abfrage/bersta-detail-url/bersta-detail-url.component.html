@@ -1,23 +1,50 @@
-<div>
-	<mat-form-field>
+<div class="searchUrl">
+	<mat-form-field [subscriptSizing]="'dynamic'">
 		<mat-label>Abfrage URL</mat-label>
 		<input matInput [(ngModel)]="queryUrl" [disabled]="berstaStore.disableQuery4Details()" />
 	</mat-form-field>
-
 	<button mat-flat-button (click)="queryDetail()" [disabled]="berstaStore.disableQuery4Details()">Abfrage</button>
 </div>
-<mat-form-field>
-	<mat-label>Suchfeld</mat-label>
-	<input matInput [(ngModel)]="searchFilter" (keydown.enter)="queryDetail()" [disabled]="berstaStore.disableQuery4Details()" />
-	@if (searchFilter) {
-		<button
-			mat-icon-button
-			matSuffix
-			(click)="searchFilter = ''"
+<div class="searchInput">
+	<mat-form-field [subscriptSizing]="'dynamic'">
+		<mat-label>Suchfeld</mat-label>
+		<input
+			matInput
+			[(ngModel)]="searchFilter"
+			(keydown.enter)="queryDetail()"
 			[disabled]="berstaStore.disableQuery4Details()"
-			aria-label="Clear"
-		>
-			<mat-icon>close</mat-icon>
-		</button>
-	}
-</mat-form-field>
+		/>
+		@if (searchFilter) {
+			<button
+				mat-icon-button
+				matSuffix
+				(click)="searchFilter = ''"
+				[disabled]="berstaStore.disableQuery4Details()"
+				aria-label="Clear"
+			>
+				<mat-icon>close</mat-icon>
+			</button>
+		}
+	</mat-form-field>
+	<mat-form-field class="bersta-no" [subscriptSizing]="'dynamic'">
+		<mat-label>Artikelnummer</mat-label>
+		<input
+			matInput
+			[(ngModel)]="searchWithArticelNo"
+			(keydown.enter)="queryByArticelNo()"
+			[disabled]="berstaStore.disableQuery4Details()"
+		/>
+		@if (searchWithArticelNo) {
+			<button
+				mat-icon-button
+				matSuffix
+				(click)="searchWithArticelNo = ''"
+				[disabled]="berstaStore.disableQuery4Details()"
+				aria-label="Clear"
+			>
+				<mat-icon>close</mat-icon>
+			</button>
+		}
+	</mat-form-field>
+	<div>Query: {{ queryString }}</div>
+</div>

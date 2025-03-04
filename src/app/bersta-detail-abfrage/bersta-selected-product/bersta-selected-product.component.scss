@@ -1,12 +1,12 @@
-:host{
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
+:host {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	padding: 16px;
 }
-div{
-  align-self: center;
+div {
+	align-self: center;
 }
-mat-form-field{
-  max-width: 100px;
+mat-form-field {
+	max-width: 100px;
 }

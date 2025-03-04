@@ -1,13 +1,23 @@
-:host,
-div {
+:host {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 }
-div {
+.searchUrl,
+.searchInput {
+	display: flex;
+	flex-direction: column;
 	flex-direction: row;
+	align-items: center;
 	gap: 8px;
+	width: 100%;
 }
 mat-form-field {
+	margin: 8px;
+}
+.searchUrl mat-form-field {
 	width: 100%;
+}
+mat-form-field.bersta-no {
+	width: 150px;
 }

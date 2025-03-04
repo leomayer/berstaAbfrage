@@ -1,31 +1,37 @@
-<table mat-table class="mat-elevation-z8" matSort matSortActive="name" matSortDisableClear
-       [class.disable-table]="!berstStore.isProductTableEnabled()"
-       [class.enabled-table]="berstStore.isProductTableEnabled()"
-       [dataSource]="dataSource">
-  <!-- Spalte: Name -->
-  <ng-container matColumnDef="name">
-    <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
-    <td *matCellDef="let product" mat-cell> {{ product.name }}</td>
-  </ng-container>
-  <!-- Spalte: Nettogewicht -->
-  <ng-container matColumnDef="netWeight">
-    <th *matHeaderCellDef mat-header-cell mat-sort-header>Netto-gewicht</th>
-    <td *matCellDef="let product" mat-cell> {{ product.netWeight }}</td>
-  </ng-container>
-  <!-- Spalte: Hersteller -->
-  <ng-container matColumnDef="producer">
-    <th *matHeaderCellDef mat-header-cell mat-sort-header>Hersteller</th>
-    <td *matCellDef="let product" mat-cell> {{ product.producer }}</td>
-  </ng-container>
+<table
+	mat-table
+	class="mat-elevation-z8"
+	matSort
+	matSortActive="name"
+	matSortDisableClear
+	[class.disable-table]="!berstStore.isProductTableEnabled()"
+	[class.enabled-table]="berstStore.isProductTableEnabled()"
+	[dataSource]="dataSource"
+>
+	<!-- Spalte: Name -->
+	<ng-container matColumnDef="name">
+		<th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
+		<td *matCellDef="let product" mat-cell> {{ product.name }}</td>
+	</ng-container>
+	<!-- Spalte: Nettogewicht -->
+	<ng-container matColumnDef="netWeight">
+		<th *matHeaderCellDef mat-header-cell mat-sort-header>Netto-gewicht</th>
+		<td *matCellDef="let product" mat-cell> {{ product.netWeight }}</td>
+	</ng-container>
+	<!-- Spalte: Hersteller -->
+	<ng-container matColumnDef="producer">
+		<th *matHeaderCellDef mat-header-cell mat-sort-header>Hersteller</th>
+		<td *matCellDef="let product" mat-cell> {{ product.producer }}</td>
+	</ng-container>
 
-  <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
-  <tr
-    *matRowDef="let row; columns: displayedColumns"
-    mat-row
-    (click)="setClickedRow(row)"
-    [class.bersta-row-is-clicked]="berstStore.getSelectedProductId() === row.sid"
-  ></tr>
-  <tr *matNoDataRow matColumnDef="noData">
-    <td class="mat-cell" colspan="9999"> Keine Daten gefunden</td>
-  </tr>
+	<tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+	<tr
+		*matRowDef="let row; columns: displayedColumns"
+		mat-row
+		(click)="setClickedRow(row)"
+		[class.bersta-row-is-clicked]="berstStore.getSelectedProductId() === row.sid"
+	></tr>
+	<tr *matNoDataRow matColumnDef="noData">
+		<td class="mat-cell" colspan="9999"> Keine Daten gefunden</td>
+	</tr>
 </table>

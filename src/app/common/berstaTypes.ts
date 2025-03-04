@@ -8,6 +8,7 @@ export type BerstaProductPriceDetail = {
 };
 export type BerstaProductDetail = {
 	sid: number;
+	articleNr: string;
 	name: string;
 	netWeight: number;
 	producer: string;
@@ -16,6 +17,7 @@ export type BerstaProductDetail = {
 export const createEmptyBerstaProductDetail = (): BerstaProductDetail => {
 	return {
 		sid: 0,
+		articleNr: '',
 		name: '',
 		netWeight: 0,
 		producer: '',
