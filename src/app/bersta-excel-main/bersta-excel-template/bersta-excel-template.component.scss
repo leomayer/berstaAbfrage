@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+  max-width: 61vw;
+}
+
+mat-form-field {
+  width: inherit;
+}
+
+.mat-column-mwst {
+  width: 80px;
+}
+
+.mat-column-notiz {
+  width: 150px;
+}
+
+.mat-column-kategorie {
+  width: 200px;
+}
+
+.mat-column-verf,
+.mat-column-bestellnummer,
+.mat-column-name,
+.mat-column-produzent,
+.mat-column-herkunft,
+.mat-column-einheit,
+.mat-column-nettopreis,
+.mat-column-pfand,
+.mat-column-gebindegr,
+.mat-column-geschuetzt1,
+.mat-column-geschuetzt2 {
+  max-width: 50px;
+  overflow-wrap: break-word; /* For content in cells */
+  word-break: break-word; /* For content in headers */
+}

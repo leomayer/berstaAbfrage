@@ -10,6 +10,7 @@ import {
 } from './common/berstaTypes';
 
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { withExcelStatus } from './app-signal-Excelfeature-store';
 
 const initBerstaState: BerstaRequestStates = {
 	msgKey: 'unknown',
@@ -21,6 +22,7 @@ export const BerstaStore = signalStore(
 	{ providedIn: 'root' },
 	withState(initBerstaState),
 	withRequestStatus(),
+  withExcelStatus(),
 	withMethods((state) => {
 		const berstaClient = inject(BerstaService);
 		return {
@@ -56,4 +58,5 @@ export const BerstaStore = signalStore(
 			getSelectedProductId: computed(() => state.currentProduct().sid),
 		};
 	}),
+
 );
