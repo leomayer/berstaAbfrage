@@ -1,0 +1,25 @@
+<div>
+	<mat-form-field subscriptSizing="dynamic">
+		<mat-label>Ganze Excel Zeile mit Tab-Stopps</mat-label>
+		<textarea
+			#autosize="cdkTextareaAutosize"
+			matInput
+			cdkTextareaAutosize
+			cdkAutosizeMinRows="1"
+			cdkAutosizeMaxRows="5"
+			[(ngModel)]="excelRow"
+			[disabled]="berstaStore.disableQuery4Details()"
+		></textarea>
+	</mat-form-field>
+</div>
+<div>
+	<button mat-raised-button (click)="transferInput()" [disabled]="berstaStore.disableQuery4Details()"
+		>Übernehmen</button
+	>
+	Spalten: {{ foundRows }}
+	@if (foundRows === 14) {
+		<mat-icon>verified</mat-icon>
+		<button mat-flat-button (click)="searchBersta()">Suchen</button>
+		{{ diffLabel() }}
+	}
+</div>

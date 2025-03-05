@@ -31,9 +31,14 @@ export type BerstaProductDetailHttp = {
 	products: BerstaProductDetail[];
 };
 
+export type ExcelQuery = {
+	searchText: string;
+	articleNo: string;
+};
 export type BerstaRequestStates = {
 	msgKey: string;
 	token: string;
 	productQueryResult: BerstaProductDetail[];
 	currentProduct: BerstaProductDetail;
+	excelQuery: ExcelQuery;
 };

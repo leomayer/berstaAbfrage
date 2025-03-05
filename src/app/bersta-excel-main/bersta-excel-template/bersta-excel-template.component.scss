@@ -1,24 +1,41 @@
 :host {
-  display: flex;
-  overflow: auto;
-  width: 100%;
-  max-width: 61vw;
+	display: flex;
+	overflow: auto;
+}
+
+[mat-header-row] {
+	max-height: 70px; /* Adjust the maximum height as needed */
+	overflow: hidden; /* Hide overflowing content */
+	/* Optional: Add ellipsis for truncated text */
+	text-overflow: ellipsis;
+	white-space: nowrap; /* Prevent text from wrapping */
+}
+
+@media screen and (max-width: 1300px) {
+	:host {
+		max-width: 61vw;
+	}
+}
+@media screen and (min-width: 1300px) {
+	:host {
+		width: calc(100% - 32px);
+	}
 }
 
 mat-form-field {
-  width: inherit;
+	width: inherit;
 }
 
 .mat-column-mwst {
-  width: 80px;
+	max-width: 80px;
 }
 
 .mat-column-notiz {
-  width: 150px;
+	max-width: 150px;
 }
 
 .mat-column-kategorie {
-  width: 200px;
+	max-width: 200px;
 }
 
 .mat-column-verf,
@@ -32,7 +49,8 @@ mat-form-field {
 .mat-column-gebindegr,
 .mat-column-geschuetzt1,
 .mat-column-geschuetzt2 {
-  max-width: 50px;
-  overflow-wrap: break-word; /* For content in cells */
-  word-break: break-word; /* For content in headers */
+	max-width: 80px;
+	line-break: normal;
+	word-break: break-word; /* For content in headers */
+	overflow-wrap: break-word; /* For content in cells */
 }

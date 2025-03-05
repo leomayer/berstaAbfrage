@@ -1,5 +1,6 @@
 import { computed, inject } from '@angular/core';
 
+import { withExcelStatus } from './app-signal-Excelfeature-store';
 import { withRequestStatus } from './app-signal-feature-store';
 import { BerstaService } from './common/bersta.service';
 import {
@@ -10,19 +11,19 @@ import {
 } from './common/berstaTypes';
 
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { withExcelStatus } from './app-signal-Excelfeature-store';
 
 const initBerstaState: BerstaRequestStates = {
 	msgKey: 'unknown',
 	token: '',
 	productQueryResult: [],
 	currentProduct: createEmptyBerstaProductDetail(),
+	excelQuery: { searchText: '', articleNo: '' },
 };
 export const BerstaStore = signalStore(
 	{ providedIn: 'root' },
 	withState(initBerstaState),
 	withRequestStatus(),
-  withExcelStatus(),
+	withExcelStatus(),
 	withMethods((state) => {
 		const berstaClient = inject(BerstaService);
 		return {
@@ -47,6 +48,9 @@ export const BerstaStore = signalStore(
 			doSetSelectedProduct(currentProduct: BerstaProductDetail) {
 				patchState(state, { currentProduct });
 			},
+			doQueryByExcel(searchText: string, articleNo: string) {
+				patchState(state, { excelQuery: { articleNo, searchText } });
+			},
 		};
 	}),
 	withComputed((state) => {
@@ -58,5 +62,4 @@ export const BerstaStore = signalStore(
 			getSelectedProductId: computed(() => state.currentProduct().sid),
 		};
 	}),
-
 );

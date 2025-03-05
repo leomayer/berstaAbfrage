@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormField } from '@angular/material/form-field';
@@ -20,6 +20,18 @@ export class BerstaDetailUrlComponent {
 	queryString = '';
 	berstaStore = inject(BerstaStore);
 
+	constructor() {
+		effect(() => {
+			const excelSearch = this.berstaStore.excelQuery();
+			if (excelSearch) {
+				if (excelSearch.searchText.length > 0 || excelSearch.articleNo.length > 0) {
+					this.searchFilter = excelSearch.searchText.trim();
+					this.searchWithArticelNo = excelSearch.articleNo.trim();
+					this.queryByArticelNo();
+				}
+			}
+		});
+	}
 	queryDetail() {
 		this.queryString = this.searchFilter;
 		this.query();
