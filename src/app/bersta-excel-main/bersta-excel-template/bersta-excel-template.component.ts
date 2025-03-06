@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {  MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { BerstaStore } from '../../app-signal-store';

@@ -5,6 +5,7 @@ export type BerstaLoginHttp = {
 };
 export type BerstaProductPriceDetail = {
 	singleUnitPrice: number;
+	singleUnitPricePriceList: number;
 };
 export type BerstaProductDetail = {
 	sid: number;
@@ -21,7 +22,7 @@ export const createEmptyBerstaProductDetail = (): BerstaProductDetail => {
 		name: '',
 		netWeight: 0,
 		producer: '',
-		priceListPos: [{ singleUnitPrice: 0 }],
+		priceListPos: [{ singleUnitPrice: 0, singleUnitPricePriceList: 0 }],
 	};
 };
 export const createEmptyBerstaProduct = (): BerstaProductDetail[] => {

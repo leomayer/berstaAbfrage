@@ -3,6 +3,9 @@
 	<h1>{{ title }}</h1>
 	<h4>Abfrage einzelner Bersta-Produkte</h4>
 	<app-bersta-login />
+	<div class="buildInfo">
+		<mat-icon>hourglass_bottom</mat-icon><span> Build: {{ buildInfo.buildTime | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+	</div>
 </div>
 <div class="right-side">
 	<app-bersta-detail-abfrage />

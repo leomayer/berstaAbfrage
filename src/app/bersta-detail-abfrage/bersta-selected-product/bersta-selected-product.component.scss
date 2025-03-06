@@ -1,12 +1,29 @@
+@use '@angular/material' as mat;
+
 :host {
 	display: flex;
+	flex-flow: column;
 	align-content: center;
-	justify-content: space-between;
 	padding: 16px;
 }
 div {
+	display: flex;
 	align-self: center;
+	width: 100%;
+}
+.details {
+	flex-flow: row;
+	align-content: center;
+	justify-content: space-between;
 }
 mat-form-field {
 	max-width: 100px;
+}
+span {
+	margin-inline: 8px;
+	background-color: mat.m2-get-color-from-palette(mat.$m2-teal-palette, 50);
+	color: mat.m2-get-contrast-color-from-palette(mat.$m2-teal-palette, 50);
+}
+.mat-icon-warning {
+	color: mat.m2-get-color-from-palette(mat.$m2-pink-palette, 600);
 }

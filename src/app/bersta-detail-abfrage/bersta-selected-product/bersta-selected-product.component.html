@@ -1,9 +1,24 @@
 @if (berstaStore.isTableEntrySelect()) {
-	<div>#&nbsp;{{ berstaStore.currentProduct().articleNr }} - {{ berstaStore.currentProduct().name }}:</div>
-	<mat-form-field>
-		<mat-label>Preis</mat-label>
-		<input matInput [readonly]="true" value="{{ berstaStore.currentProduct().priceListPos[0].singleUnitPrice }}" />
-	</mat-form-field>
+	<div class="details">
+		<div>#&nbsp;{{ berstaStore.currentProduct().articleNr }} - {{ berstaStore.currentProduct().name }}:</div>
+		<mat-form-field>
+			<mat-label>Preis</mat-label>
+			<input matInput [readonly]="true" value="{{ berstaStore.currentProduct().priceListPos[0].singleUnitPrice }}" />
+		</mat-form-field>
+	</div>
+	@if (berstaStore.hasUnitsDifference()) {
+		<div>
+			<mat-icon [color]="'icon-warning'">warning</mat-icon>
+			<b>Netto-</b>Preis ist kein Einheitspreis!
+			<span>
+				{{ berstaStore.getCurrentPriceDetails()?.singleUnitPrice }}
+			</span>
+			<mat-icon>start</mat-icon>
+			<span>
+				{{ berstaStore.getCurrentPriceDetails()?.singleUnitPricePriceList }}
+			</span>
+		</div>
+	}
 } @else {
 	<p> Nix ausgewählt</p>
 }

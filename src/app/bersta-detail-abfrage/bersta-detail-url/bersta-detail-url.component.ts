@@ -15,7 +15,7 @@ import { BerstaStore } from '../../app-signal-store';
 })
 export class BerstaDetailUrlComponent {
 	queryUrl = 'https://shop.bersta.at/ACM/api/webshop/getproductsextended';
-	searchFilter = 'Brot';
+	searchFilter = 'Poccocinio';
 	searchWithArticelNo = '2005';
 	queryString = '';
 	berstaStore = inject(BerstaStore);

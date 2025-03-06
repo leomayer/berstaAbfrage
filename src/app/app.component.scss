@@ -33,7 +33,6 @@
 	);
 
 	--pill-accent: var(--bright-blue);
-	box-sizing: border-box;
 
 	font-family:
 		'Inter',
@@ -93,4 +92,10 @@ p {
 	flex-grow: 1; /* Allow right side to expand */
 	flex-direction: column; /* Stack table and other elements vertically */
 	height: calc(100vh - 40px);
+}
+.buildInfo {
+	display: flex;
+	align-items: center;
+	margin: 16px;
+	font-size: small;
 }

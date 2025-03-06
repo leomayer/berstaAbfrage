@@ -60,6 +60,20 @@ export const BerstaStore = signalStore(
 			isProductTableEnabled: computed(() => state.msgKey() === 'login.successful' && state.isFulfilled()),
 			isTableEntrySelect: computed(() => state.currentProduct().sid > 0),
 			getSelectedProductId: computed(() => state.currentProduct().sid),
+			getCurrentPriceDetails: computed(() => {
+				const priceDet = state.currentProduct().priceListPos;
+				if (priceDet) {
+					return priceDet[0];
+				}
+				return undefined;
+			}),
+			hasUnitsDifference: computed(() => {
+				const priceDet = state.currentProduct().priceListPos;
+				if (priceDet) {
+					return priceDet[0].singleUnitPrice !== priceDet[0].singleUnitPricePriceList;
+				}
+				return false;
+			}),
 		};
 	}),
 );
