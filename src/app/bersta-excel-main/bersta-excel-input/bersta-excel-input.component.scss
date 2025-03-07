@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 :host {
 	display: flex;
 	flex-flow: column;
@@ -7,8 +9,16 @@ mat-form-field {
 	margin-top: 8px;
 	width: 100%;
 }
-div {
+.footer-1,
+.field-input {
 	display: flex;
+	flex-flow: row;
 	align-items: center;
 	gap: 8px;
+	width: 100%;
+}
+span {
+	margin-inline: 8px;
+	background-color: mat.m2-get-color-from-palette(mat.$m2-teal-palette, 50);
+	color: mat.m2-get-contrast-color-from-palette(mat.$m2-teal-palette, 50);
 }

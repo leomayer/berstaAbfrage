@@ -1,5 +1,5 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { Component, computed, inject } from '@angular/core';
+import { Component, Signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,11 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { BerstaStore } from '../../app-signal-store';
+
+export type CalcDetails = {
+	label: string;
+	preis: number;
+};
 
 @Component({
 	selector: 'app-bersta-excel-input',
@@ -16,35 +21,60 @@ import { BerstaStore } from '../../app-signal-store';
 })
 export class BerstaExcelInputComponent {
 	excelRow = '';
-	foundRows = 0;
 	colSpaltePreis = 7;
+	colSpalteMwst = 8;
+	cols4Excel: string[] = [];
+
 	clipboard = inject(Clipboard);
 
 	berstaStore = inject(BerstaStore);
+
 	diffLabel = computed(() => {
-		const cols = this.excelRow.split('\t');
-		const alterPreis = Number(cols[this.colSpaltePreis]);
-		if (alterPreis === this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice) {
+		const alterPreis = Number(this.cols4Excel[this.colSpaltePreis]);
+		// Preis ist auch NUR gerundet in der Foodcop
+		const neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
+		if (alterPreis === neuerPreis) {
 			return 'Unveränderter Preis';
 		} else {
-			this.clipboard.copy(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice + '');
-			return (
-				alterPreis + ' ==>' + this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice + ' (in clipboard)'
-			);
+			this.clipboard.copy(neuerPreis + '');
+			return alterPreis + ' ==>' + neuerPreis + ' (in clipboard)';
 		}
 	});
 
+	calcEnheitsPreisPlusMwst: Signal<CalcDetails> = computed(() => {
+		const alterPreis = Number(this.cols4Excel[this.colSpaltePreis]);
+		const emptyResponse = {
+			label: '',
+			preis: 0,
+		};
+		try {
+			if (alterPreis !== this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice) {
+				const mwst = Number(this.cols4Excel[this.colSpalteMwst]);
+				if (mwst > 0) {
+					const bruttoPreis =
+						(this.berstaStore.currentProduct().priceListPos[0].singleUnitPricePriceList * (100 + mwst)) / 100;
+					return {
+						label: `Bruttopreis (+ ${mwst}%): `,
+						preis: Math.floor(bruttoPreis * 100) / 100,
+					};
+				}
+			}
+		} catch {
+			// nothing to do - just default...
+		}
+		return emptyResponse;
+	});
+
 	transferInput() {
-		const cols = this.excelRow.split('\t');
-		this.foundRows = cols.length;
-		if (this.foundRows === 14) {
+		this.cols4Excel = this.excelRow.split('\t');
+		if (this.cols4Excel.length === 14) {
 			this.searchBersta();
 		}
 	}
 
 	searchBersta() {
-		const cols = this.excelRow.split('\t');
+		this.cols4Excel = this.excelRow.split('\t');
 
-		this.berstaStore.doQueryByExcel(cols[2], cols[1]);
+		this.berstaStore.doQueryByExcel(this.cols4Excel[2], this.cols4Excel[1]);
 	}
 }

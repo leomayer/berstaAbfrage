@@ -1,4 +1,4 @@
-<div>
+<div class="field-input">
 	<mat-form-field subscriptSizing="dynamic">
 		<mat-label>Ganze Excel Zeile mit Tab-Stopps</mat-label>
 		<textarea
@@ -13,13 +13,25 @@
 	</mat-form-field>
 </div>
 <div>
-	<button mat-raised-button (click)="transferInput()" [disabled]="berstaStore.disableQuery4Details()"
-		>Übernehmen</button
-	>
-	Spalten: {{ foundRows }}
-	@if (foundRows === 14) {
-		<mat-icon>verified</mat-icon>
-		<button mat-flat-button (click)="searchBersta()">Suchen</button>
-		{{ diffLabel() }}
-	}
+	<div class="footer-1">
+		<button mat-raised-button (click)="transferInput()" [disabled]="berstaStore.disableQuery4Details()"
+			>Übernehmen</button
+		>
+		@if (cols4Excel.length > 0) {
+			Spalten: {{ cols4Excel.length }}
+			@if (cols4Excel.length === 14) {
+				<mat-icon>verified</mat-icon>
+				<button mat-flat-button (click)="searchBersta()">Suchen</button>
+				{{ diffLabel() }}
+			}
+		}
+	</div>
 </div>
+@if (calcEnheitsPreisPlusMwst().label) {
+	<div
+		>{{ calcEnheitsPreisPlusMwst().label }}
+		<span>
+			{{ calcEnheitsPreisPlusMwst().preis }}
+		</span>
+	</div>
+}
