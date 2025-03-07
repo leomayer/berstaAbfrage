@@ -1,5 +1,11 @@
 # BerstaAbfrage
 
+Das Projekt hat zum Ziel vom Bersta Online Shop die Produkte abzufragen, die letztlich in der Foodsoft verwaltet werden. 
+
+Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend in Angular neu definiert worden. Es sind nur die Teile der DTOs übernommen worden, die auch ausgewertet werden. Ich habe mich dabei an die benötigten Daten der Foodsoft orientiert. 
+
+Im Online Shop kann man ein Stichwort oder eine Artikelnummer suchen. Bersta verwendet die Artikelnummern 6-stellig,numerische und ganzahlig, mit führender Null. Dies wird im Feld Artikelnummer entsprechend formatiert und abgefragt. 
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
 
 ## Development server
