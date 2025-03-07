@@ -12,7 +12,7 @@ Eingabe der Zugangsdaten und einloggen. Die Suchabfrage wird erst möglich, wenn
 
 ### Eingabe & Suche 
 
-Der Button Abfrage führt die Suche nach dem Stichwort durch. In den jeweiligen Suchfeldern wird durch die `Eingabe`-Taste (bzw ENTER) die jeweilige Suche durchgeführt. Das Feld Artikelnummer wird vor der Suche entsprechend formatiert.
+Der Button Abfrage führt die Suche nach dem Stichwort durch. In den jeweiligen Suchfeldern wird durch die `Eingabe`-Taste (bzw `ENTER`) die jeweilige Suche durchgeführt. Das Feld `Artikelnummer` wird vor der Suche entsprechend formatiert.
 
 ### Suchergebnis
 
@@ -25,7 +25,7 @@ Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend i
 Es sind nur die Teile der DTOs übernommen worden, die auch ausgewertet werden. Ich habe mich dabei an die benötigten Daten der Foodsoft orientiert. 
 
 
-## Angular 
+# Angular 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
 
