@@ -6,6 +6,9 @@ Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend i
 
 Im Online Shop kann man ein Stichwort oder eine Artikelnummer suchen. Bersta verwendet die Artikelnummern 6-stellig,numerische und ganzahlig, mit führender Null. Dies wird im Feld Artikelnummer entsprechend formatiert und abgefragt. 
 
+
+## Angular 
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
 
 ## Development server
