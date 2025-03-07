@@ -1,10 +1,28 @@
-# BerstaAbfrage
+# Bersta-Preise: Abfrage & Foodsoft 
 
-Das Projekt hat zum Ziel vom Bersta Online Shop die Produkte abzufragen, die letztlich in der Foodsoft verwaltet werden. 
+Das Projekt hat zum Ziel vom Bersta Online Shop die Produkte abzufragen, die letztlich in der Foodsoft verwaltet werden. Das Programm soll die Abfrage der Preise vereinfachen und einen kurzen Überblick geben. 
 
-Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend in Angular neu definiert worden. Es sind nur die Teile der DTOs übernommen worden, die auch ausgewertet werden. Ich habe mich dabei an die benötigten Daten der Foodsoft orientiert. 
+## Hintergrund 
 
-Im Online Shop kann man ein Stichwort oder eine Artikelnummer suchen. Bersta verwendet die Artikelnummern 6-stellig,numerische und ganzahlig, mit führender Null. Dies wird im Feld Artikelnummer entsprechend formatiert und abgefragt. 
+Im Online Shop kann man ein Stichwort oder eine Artikelnummer suchen. Bersta verwendet die Artikelnummern 6-stellig, numerische und ganzahlig, mit führender Null.  
+
+### Login
+
+Eingabe der Zugangsdaten und einloggen. Die Suchabfrage wird erst möglich, wenn man sich erfolgreich eingeloggt hat (macht sonst wenig Sinn). 
+
+### Eingabe & Suche 
+
+Der Button Abfrage führt die Suche nach dem Stichwort durch. In den jeweiligen Suchfeldern wird durch die `Eingabe`-Taste (bzw ENTER) die jeweilige Suche durchgeführt. Das Feld Artikelnummer wird vor der Suche entsprechend formatiert.
+
+### Suchergebnis
+
+Die Ergebnisse der Suche wird in einer Tabelle angezeigt. Klicken auf einen Eintrag, zeigt den Preis an; gibt es nur einen Suchtreffer, werden die Details hierzu gleich angezeigt. 
+
+## Entwicklung 
+
+Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend in Angular neu definiert worden. Die URLs sind direkt übernommen worden. Für die Suchabfrage kann diese ggf geändert werden. 
+
+Es sind nur die Teile der DTOs übernommen worden, die auch ausgewertet werden. Ich habe mich dabei an die benötigten Daten der Foodsoft orientiert. 
 
 
 ## Angular 
