@@ -20,6 +20,12 @@ Die Ergebnisse der Suche wird in einer Tabelle angezeigt. Klicken auf einen Eint
 
 Man kann in der Foodsoft von einem Besteller die Artikel exportiert. Dieser Export wird in eine CSV Datei gespeichert, die mit Excel importieren werden kann. Der Export besteht aus 14 Spalten, von denen 2 nicht befüllt sind. 
 
+Im Eingabefeld kann man eine ganze Excel Zeile einfügen; die Werte je Spalte sind mittels Tabulator getrennt. `Übernehmen` teilt die Spalten auf, die 2. Spalte wird in die zuvor beschriebene Suche als Bersta-Artikelnummer übernommen. 
+
+Sofern die Suche nur einen Treffer ergeben hat, wird der Preis übernommen. Sofern der Preis in der 7. Spalte mit dem der Suche übereinstimmt, wird nur eine Benachrichtigung angezeigt. Ist der Preis unterschiedlich, wird der alte und der neue angezeigt. 
+
+Manche Bersta-Artikel sind selbst abzuwägen, weil diese zB nur nach `kg` berechnet werden. Es wird hier dann auch der Bruttopreis berechnet - die Mehrwertsteuer wird aus der 8. Spalte genommen. 
+
 ## Entwicklung 
 
 Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend in Angular neu definiert worden. Die URLs sind direkt übernommen worden. Für die Suchabfrage kann diese ggf geändert werden. 
@@ -27,7 +33,7 @@ Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend i
 Es sind nur die Teile der DTOs übernommen worden, die auch ausgewertet werden. Ich habe mich dabei an die benötigten Daten der Foodsoft orientiert. 
 
 
-# Angular 
+# Angular
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
 
