@@ -20,7 +20,11 @@ Die Ergebnisse der Suche wird in einer Tabelle angezeigt. Klicken auf einen Eint
 
 Man kann in der Foodsoft von einem Besteller die Artikel exportiert. Dieser Export wird in eine CSV Datei gespeichert, die mit Excel importieren werden kann. Der Export besteht aus 14 Spalten, von denen 2 nicht befüllt sind. 
 
-Im Eingabefeld kann man eine ganze Excel Zeile einfügen; die Werte je Spalte sind mittels Tabulator getrennt. `Übernehmen` teilt die Spalten auf, die 2. Spalte wird in die zuvor beschriebene Suche als Bersta-Artikelnummer übernommen. 
+Im Eingabefeld kann man eine ganze Excel Zeile einfügen; die Werte je Spalte sind mittels Tabulator getrennt. `Übernehmen` macht folgende Aktionen:
+
+1. Aufteilen die Spalten gem. Spalten 
+2. 2. Spalte wird in die zuvor beschriebene Suche als Bersta-Artikelnummer übernommen; die 1. Spalte als Name des Bersta-Artikel
+3. Durchführung der Suche nach Artikelnummer wie in `Eingabe & Suche`beschrieben 
 
 Sofern die Suche nur einen Treffer ergeben hat, wird der Preis übernommen. Sofern der Preis in der 7. Spalte mit dem der Suche übereinstimmt, wird nur eine Benachrichtigung angezeigt. Ist der Preis unterschiedlich, wird der alte und der neue angezeigt. 
 
@@ -71,23 +75,7 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ## Additional Resources
 
