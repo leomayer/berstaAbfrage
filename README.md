@@ -14,9 +14,11 @@ Eingabe der Zugangsdaten und einloggen. Die Suchabfrage wird erst möglich, wenn
 
 Der Button Abfrage führt die Suche nach dem Stichwort durch. In den jeweiligen Suchfeldern wird durch die `Eingabe`-Taste (bzw `ENTER`) die jeweilige Suche durchgeführt. Das Feld `Artikelnummer` wird vor der Suche entsprechend formatiert.
 
-### Suchergebnis
-
 Die Ergebnisse der Suche wird in einer Tabelle angezeigt. Klicken auf einen Eintrag, zeigt den Preis an; gibt es nur einen Suchtreffer, werden die Details hierzu gleich angezeigt. 
+
+### Excel-Spalten 
+
+Man kann in der Foodsoft von einem Besteller die Artikel exportiert. Dieser Export wird in eine CSV Datei gespeichert, die mit Excel importieren werden kann. Der Export besteht aus 14 Spalten, von denen 2 nicht befüllt sind. 
 
 ## Entwicklung 
 
