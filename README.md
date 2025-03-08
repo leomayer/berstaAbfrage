@@ -32,10 +32,9 @@ Manche Bersta-Artikel sind selbst abzuwägen, weil diese zB nur nach `kg` berech
 
 ## Entwicklung 
 
-Die API Schnittstelle habe ich via dem Online Shop analysiert und entsprechend in Angular neu definiert worden. Die URLs sind direkt übernommen worden. Für die Suchabfrage kann diese ggf geändert werden. 
+Die API-Schnittstelle wurde anhand des Bersta-Webshops analysiert und entsprechend in Angular definiert. Die URLs wurden direkt übernommen und können bei Bedarf geändert werden. 
 
-Es sind nur die Teile der DTOs übernommen worden, die auch ausgewertet werden. Ich habe mich dabei an die benötigten Daten der Foodsoft orientiert. 
-
+Von den DTOs wurden nur die Teile übernommen, die auch ausgewertet werden. Dabei habe ich mich an den benötigten Daten von Foodsoft orientiert.
 
 # Angular
 
