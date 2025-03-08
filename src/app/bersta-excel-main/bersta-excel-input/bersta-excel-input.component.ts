@@ -22,6 +22,7 @@ export type CalcDetails = {
 export class BerstaExcelInputComponent {
 	excelRow = '';
  colSpalteArtikelId = 1;
+ colSpalteName =2;
 	colSpaltePreis = 7;
 	colSpalteMwst = 8;
 	cols4Excel: string[] = [];
@@ -76,6 +77,6 @@ export class BerstaExcelInputComponent {
 	searchBersta() {
 		this.cols4Excel = this.excelRow.split('\t');
 
-		this.berstaStore.doQueryByExcel(this.cols4Excel[2], this.cols4Excel[colSpalteArtikelId]);
+		this.berstaStore.doQueryByExcel(this.cols4Excel[colSpalteName], this.cols4Excel[colSpalteArtikelId]);
 	}
 }
