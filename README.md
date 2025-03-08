@@ -23,7 +23,7 @@ Man kann in der Foodsoft von einem Besteller die Artikel exportiert. Dieser Expo
 Im Eingabefeld kann man eine ganze Excel Zeile einfügen; die Werte je Spalte sind mittels Tabulator getrennt. `Übernehmen` macht folgende Aktionen:
 
 1. Aufteilen die Spalten gem. Spalten 
-2. 2. Spalte wird in die zuvor beschriebene Suche als Bersta-Artikelnummer übernommen; die 1. Spalte als Name des Bersta-Artikel
+2. Die 2. Spalte wird in die Suche als Bersta-Artikelnummer übernommen; die 1. Spalte als Name des Bersta-Artikel
 3. Durchführung der Suche nach Artikelnummer wie in `Eingabe & Suche`beschrieben 
 
 Sofern die Suche nur einen Treffer ergeben hat, wird der Preis übernommen. Sofern der Preis in der 7. Spalte mit dem der Suche übereinstimmt, wird nur eine Benachrichtigung angezeigt. Ist der Preis unterschiedlich, wird der alte und der neue angezeigt. 
