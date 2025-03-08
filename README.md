@@ -1,6 +1,6 @@
 # Bersta-Preise: Abfrage & Foodsoft 
 
-Das Projekt hat zum Ziel vom Bersta Online Shop die Produkte abzufragen, die letztlich in der Foodsoft verwaltet werden. Das Programm soll die Abfrage der Preise vereinfachen und einen kurzen Überblick geben. 
+Das Projekt hat zum Ziel, die Produkte, die letztendlich in Foodsoft verwaltet werden, aus dem Bersta Online Shop abzufragen. Das Programm soll die Preisabfrage vereinfachen und einen kurzen Überblick geben.
 
 ## Hintergrund 
 
