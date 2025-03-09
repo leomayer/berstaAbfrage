@@ -1,13 +1,36 @@
-<div class="left-side">
+<div class="app-toolbar">
+	<mat-toolbar color="primary">
+		<button mat-icon-button (click)="toggleMenu()" aria-label="Menu icon">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<h1>{{ title }}</h1>
+	</mat-toolbar>
 	<app-angular-title />
-	<h1>{{ title }}</h1>
-	<h4>Abfrage einzelner Bersta-Produkte</h4>
-	<app-bersta-login />
-	<div class="buildInfo">
-		<mat-icon>hourglass_bottom</mat-icon><span> Build: {{ buildInfo.buildTime | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
-	</div>
 </div>
-<div class="right-side">
-	<app-bersta-detail-abfrage />
-	<app-bersta-excel-main />
+<mat-sidenav-container [hasBackdrop]="true" autosize>
+	<mat-sidenav [opened]="isMobile ? 'false' : 'true'" [mode]="isMobile ? 'over' : 'side'">
+		<mat-nav-list>
+			@for (nav of navItems; track nav.icon) {
+				<a mat-list-item (click)="selectNavItem(nav.route)">
+					<span class="entry">
+						<mat-icon matListItemIcon>{{ nav.icon }}</mat-icon>
+						@if (!isCollapsed) {
+							<span>{{ nav.label }}</span>
+						}
+					</span>
+				</a>
+			}
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<div class="app-result">
+			<router-outlet></router-outlet>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>
+<div class="buildInfo">
+	<mat-icon>hourglass_bottom</mat-icon>
+	<span> Build: {{ buildInfo.buildTime | date: 'yyyy-MM-dd HH:mm:ss' }} </span>
+
+	<span>Angular-Version: {{ version.full }} </span>
 </div>

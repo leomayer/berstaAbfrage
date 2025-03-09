@@ -24,7 +24,7 @@
 			</p>
 		</form>
 	</mat-card-content>
-	<mat-card-actions [class.loginSuccess]="berstaSignalStore.isLogggedIn()" align="end">
+	<mat-card-actions [class.loginSuccess]="berstaSignalStore.isLogggedIn()" align="start">
 		@if (berstaSignalStore.isLogggedIn()) {
 			<div> Logged in 🎉 </div>
 		}
