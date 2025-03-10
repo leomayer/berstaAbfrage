@@ -11,8 +11,8 @@
 	<mat-sidenav [opened]="isMobile ? 'false' : 'true'" [mode]="isMobile ? 'over' : 'side'">
 		<mat-nav-list>
 			@for (nav of navItems; track nav.icon) {
-				<a mat-list-item (click)="selectNavItem(nav.route)">
-					<span class="entry">
+				<a mat-list-item (click)="selectNavItem(nav.route)"  [class.active-link]="activeRoute === nav.route">
+					<span class="entry" [class.active-link]="activeRoute === nav.route">
 						<mat-icon matListItemIcon>{{ nav.icon }}</mat-icon>
 						@if (!isCollapsed) {
 							<span>{{ nav.label }}</span>

@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 :host {
 	display: flex;
 	flex-flow: column;
@@ -67,30 +69,27 @@ mat-sidenav-container {
 	mat-sidenav {
 		display: flex;
 		flex-flow: column;
+    gap: 4px;
 		width: min-content;
+    .active-link {
+      background-color: mat.m2-get-color-from-palette(mat.$m2-blue-gray-palette, 100);
+      color: mat.m2-get-contrast-color-from-palette(mat.$m2-blue-gray-palette, 100);
+      font-weight: bold;
+    }
 	}
+  mat-nav-list{
+    padding: 4px;
+  }
 	.app-result {
 		margin: 8px;
 	}
 	.entry {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		padding: 0.75rem;
+		gap: 8px;
 	}
 }
 
-.left-side {
-	display: flex;
-	flex-direction: column;
-	padding: 16px;
-}
-.right-side {
-	display: flex; /* Flexbox for right side content */
-	flex-grow: 1; /* Allow right side to expand */
-	flex-direction: column; /* Stack table and other elements vertically */
-	height: calc(100vh - 40px);
-}
 .buildInfo {
 	display: flex;
 	align-items: center;
