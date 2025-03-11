@@ -69,17 +69,17 @@ mat-sidenav-container {
 	mat-sidenav {
 		display: flex;
 		flex-flow: column;
-    gap: 4px;
+		gap: 4px;
 		width: min-content;
-    .active-link {
-      background-color: mat.m2-get-color-from-palette(mat.$m2-blue-gray-palette, 100);
-      color: mat.m2-get-contrast-color-from-palette(mat.$m2-blue-gray-palette, 100);
-      font-weight: bold;
-    }
+		.active-link {
+			background-color: mat.m2-get-color-from-palette(mat.$m2-blue-gray-palette, 100);
+			color: mat.m2-get-contrast-color-from-palette(mat.$m2-blue-gray-palette, 100);
+			font-weight: bold;
+		}
 	}
-  mat-nav-list{
-    padding: 4px;
-  }
+	mat-nav-list {
+		padding: 4px;
+	}
 	.app-result {
 		margin: 8px;
 	}

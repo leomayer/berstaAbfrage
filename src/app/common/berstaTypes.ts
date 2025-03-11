@@ -39,9 +39,9 @@ export type ExcelQuery = {
 	articleNo: string;
 };
 export type BerstaUrls = {
-  loginUrl: string,
-  productQueryUrl: string,
-}
+	loginUrl: string;
+	productQueryUrl: string;
+};
 export type BerstaRequestStates = {
 	msgKey: string;
 	token: string;

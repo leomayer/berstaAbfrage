@@ -27,7 +27,7 @@ import { BerstaStore } from '../app-signal-store';
 	styleUrl: './bersta-login.component.scss',
 })
 export class BerstaLoginComponent {
-  berstaSignalStore = inject(BerstaStore);
+	berstaSignalStore = inject(BerstaStore);
 
 	formGroup = new FormGroup({
 		username: new FormControl('bestellung@1korn.at', { nonNullable: true }),

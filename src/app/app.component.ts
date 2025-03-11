@@ -12,6 +12,7 @@ import { AngularTitleComponent } from './angular-title/angular-title.component';
 
 //
 import buildInfo from '../assets/buildDate.json';
+
 import { filter } from 'rxjs';
 
 @Component({
@@ -35,7 +36,7 @@ export class AppComponent implements OnInit {
 	protected readonly version = VERSION;
 	isMobile = true;
 	isCollapsed = true;
-  activeRoute: string = '';
+	activeRoute: string = '';
 
 	navItems = [
 		{ label: 'Dashboard', icon: 'house', route: '/dashboard' },
@@ -50,12 +51,10 @@ export class AppComponent implements OnInit {
 		private observer: BreakpointObserver,
 		private router: Router,
 	) {
-    this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: any) => {
-        this.activeRoute = event.urlAfterRedirects;
-      });
-  }
+		this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: any) => {
+			this.activeRoute = event.urlAfterRedirects;
+		});
+	}
 
 	ngOnInit() {
 		this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
