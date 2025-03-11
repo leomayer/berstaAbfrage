@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "deployBersta": "npm run updateBuild && ng deploy --base-href /berstaAbfrage/",
     "start": "npm run updateBuild && ng serve --port 4331",
     "build": "npm run updateBuild && ng build",
     "watch": "ng build --watch --configuration development",
