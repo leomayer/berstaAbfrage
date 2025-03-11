@@ -1,8 +1,4 @@
 <div class="searchUrl">
-	<mat-form-field [subscriptSizing]="'dynamic'">
-		<mat-label>Abfrage URL</mat-label>
-		<input matInput [(ngModel)]="queryUrl" [disabled]="berstaStore.disableQuery4Details()" />
-	</mat-form-field>
 	<button mat-flat-button (click)="queryDetail()" [disabled]="berstaStore.disableQuery4Details()">Abfrage</button>
 </div>
 <div class="searchInput">

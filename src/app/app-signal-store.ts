@@ -4,20 +4,23 @@ import { withExcelStatus } from './app-signal-Excelfeature-store';
 import { withRequestStatus } from './app-signal-feature-store';
 import { BerstaService } from './common/bersta.service';
 import {
-	BerstaLoginHttp,
+	BerstaLoginUI,
 	BerstaProductDetail,
 	BerstaRequestStates,
+	BerstaUrls,
 	createEmptyBerstaProductDetail,
 } from './common/berstaTypes';
 
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 
-const initBerstaState: BerstaRequestStates = {
+const initBerstaState: BerstaRequestStates & BerstaUrls = {
 	msgKey: 'unknown',
 	token: '',
 	productQueryResult: [],
 	currentProduct: createEmptyBerstaProductDetail(),
 	excelQuery: { searchText: '', articleNo: '' },
+	loginUrl: 'https://shop.bersta.at/ACM/api/auth/login',
+	productQueryUrl: 'https://shop.bersta.at/ACM/api/webshop/getproductsextended',
 };
 export const BerstaStore = signalStore(
 	{ providedIn: 'root' },
@@ -27,18 +30,21 @@ export const BerstaStore = signalStore(
 	withMethods((state) => {
 		const berstaClient = inject(BerstaService);
 		return {
-			async doLogin(loginData: BerstaLoginHttp) {
+			async doLogin(loginData: BerstaLoginUI) {
 				state.setPending();
-				const result = await berstaClient.doLogin(loginData);
+				const result = await berstaClient.doLogin({
+					...loginData,
+					berstaUrl: state.loginUrl(),
+				});
 				patchState(state, {
 					msgKey: result.msgKey,
 					token: result.token,
 				});
 				state.setFulfilled();
 			},
-			async doQueryDetails(url: string, filter: string) {
+			async doQueryDetails(filter: string) {
 				state.setPending();
-				const result = await berstaClient.doQueryDetails(url, filter);
+				const result = await berstaClient.doQueryDetails(state.productQueryUrl(), filter);
 				patchState(state, { productQueryResult: result.products });
 				if (state.productQueryResult().length === 1) {
 					this.doSetSelectedProduct(state.productQueryResult()[0]);
@@ -50,6 +56,9 @@ export const BerstaStore = signalStore(
 			},
 			doQueryByExcel(searchText: string, articleNo: string) {
 				patchState(state, { excelQuery: { articleNo, searchText } });
+			},
+			saveUrls(loginUrl: string, productQueryUrl: string) {
+				patchState(state, { loginUrl, productQueryUrl });
 			},
 		};
 	}),

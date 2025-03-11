@@ -27,18 +27,17 @@ import { BerstaStore } from '../app-signal-store';
 	styleUrl: './bersta-login.component.scss',
 })
 export class BerstaLoginComponent {
+  berstaSignalStore = inject(BerstaStore);
+
 	formGroup = new FormGroup({
-		berstaUrl: new FormControl('https://shop.bersta.at/ACM/api/auth/login', { nonNullable: true }),
 		username: new FormControl('bestellung@1korn.at', { nonNullable: true }),
 		password: new FormControl('', { nonNullable: true }),
 	});
 
-	berstaSignalStore = inject(BerstaStore);
 	public showPWD = false;
 
 	login() {
 		this.berstaSignalStore.doLogin({
-			berstaUrl: this.formGroup.controls.berstaUrl.value,
 			username: this.formGroup.controls.username.value,
 			password: this.formGroup.controls.password.value,
 		});

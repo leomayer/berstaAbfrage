@@ -14,7 +14,6 @@ import { BerstaStore } from '../../app-signal-store';
 	styleUrl: './bersta-detail-url.component.scss',
 })
 export class BerstaDetailUrlComponent {
-	queryUrl = 'https://shop.bersta.at/ACM/api/webshop/getproductsextended';
 	searchFilter = 'Poccocinio';
 	searchWithArticelNo = '2005';
 	queryString = '';
@@ -51,6 +50,6 @@ export class BerstaDetailUrlComponent {
 	}
 
 	private query() {
-		this.berstaStore.doQueryDetails(this.queryUrl, this.queryString);
+		this.berstaStore.doQueryDetails(this.queryString);
 	}
 }

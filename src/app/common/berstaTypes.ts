@@ -1,7 +1,9 @@
-export type BerstaLoginHttp = {
-	berstaUrl: string;
+export type BerstaLoginUI = {
 	username: string;
 	password: string;
+};
+export type BerstaLoginHttp = BerstaLoginUI & {
+	berstaUrl: string;
 };
 export type BerstaProductPriceDetail = {
 	singleUnitPrice: number;
@@ -36,6 +38,10 @@ export type ExcelQuery = {
 	searchText: string;
 	articleNo: string;
 };
+export type BerstaUrls = {
+  loginUrl: string,
+  productQueryUrl: string,
+}
 export type BerstaRequestStates = {
 	msgKey: string;
 	token: string;
