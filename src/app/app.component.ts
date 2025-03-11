@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 	protected readonly buildInfo = buildInfo;
 	protected readonly version = VERSION;
 	isMobile = true;
-	isCollapsed = true;
+	isCollapsed = false;
 	activeRoute: string = '';
 
 	navItems = [
@@ -59,12 +59,11 @@ export class AppComponent implements OnInit {
 	ngOnInit() {
 		this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
 			this.isMobile = screenSize.matches;
+			this.isCollapsed = screenSize.matches;
 		});
 	}
 
 	selectNavItem(route: string): void {
-		// this.sidenav().close();
-		// this.toggleMenu();
 		this.router.navigate([route]);
 	}
 
@@ -76,5 +75,9 @@ export class AppComponent implements OnInit {
 			this.sidenav().open(); // On desktop/tablet, the menu can never be fully closed
 			this.isCollapsed = !this.isCollapsed;
 		}
+	}
+
+	openCollapsed() {
+		this.isCollapsed = false;
 	}
 }

@@ -8,7 +8,14 @@
 	<app-angular-title />
 </div>
 <mat-sidenav-container [hasBackdrop]="true" autosize>
-	<mat-sidenav [opened]="isMobile ? 'false' : 'true'" [mode]="isMobile ? 'over' : 'side'">
+	<mat-sidenav
+		(opened)="openCollapsed()"
+		[opened]="!isMobile"
+		[fixedInViewport]="!isMobile"
+		[fixedTopGap]="64"
+		[fixedBottomGap]="40"
+		[mode]="isMobile ? 'over' : 'side'"
+	>
 		<mat-nav-list>
 			@for (nav of navItems; track nav.icon) {
 				<a mat-list-item (click)="selectNavItem(nav.route)" [class.active-link]="activeRoute === nav.route">
