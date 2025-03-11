@@ -62,7 +62,11 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+```bash
+ ng deploy --base-href /berstaAbfrage/  
+```
 
+Deploys the project to the github pages (with properly set `base href`)
 
 ## Additional Resources
 
