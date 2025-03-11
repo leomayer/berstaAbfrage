@@ -2,6 +2,8 @@
 
 Das Projekt hat zum Ziel, die Produkte, die letztendlich in Foodsoft verwaltet werden, aus dem Bersta Online Shop abzufragen. Das Programm soll die Preisabfrage vereinfachen und einen kurzen Überblick geben.
 
+Der Link zum [Programm](https://leomayer.github.io/berstaAbfrage).
+
 ## Hintergrund 
 
 Im Online Shop kann man ein Stichwort oder eine Artikelnummer suchen. Bersta verwendet die Artikelnummern 6-stellig, numerische und ganzahlig, mit führender Null.  
