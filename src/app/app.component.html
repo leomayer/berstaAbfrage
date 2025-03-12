@@ -5,7 +5,6 @@
 		</button>
 		<h1>{{ title }}</h1>
 	</mat-toolbar>
-	<app-angular-title />
 </div>
 <mat-sidenav-container [hasBackdrop]="true" autosize>
 	<mat-sidenav
@@ -35,9 +34,13 @@
 		</div>
 	</mat-sidenav-content>
 </mat-sidenav-container>
+
 <div class="buildInfo">
 	<mat-icon>hourglass_bottom</mat-icon>
 	<span> Build: {{ buildInfo.buildTime | date: 'yyyy-MM-dd HH:mm:ss' }} </span>
 
-	<span>Angular-Version: {{ version.full }} </span>
+	<div class="version-container">
+		<app-angular-title />
+		<span> {{ version.full }} </span>
+	</div>
 </div>
