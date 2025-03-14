@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCard, MatCardActions, MatCardContent } from '@angular/material/card';
@@ -26,18 +26,28 @@ import { BerstaStore } from '../app-signal-store';
 	templateUrl: './bersta-login.component.html',
 	styleUrl: './bersta-login.component.scss',
 })
-export class BerstaLoginComponent {
+export class BerstaLoginComponent implements OnDestroy {
 	berstaSignalStore = inject(BerstaStore);
 
 	formGroup = new FormGroup({
-		username: new FormControl('', { nonNullable: true }),
-		password: new FormControl('', { nonNullable: true }),
+		username: new FormControl(this.berstaSignalStore.username(), { nonNullable: true }),
+		password: new FormControl(this.berstaSignalStore.password(), { nonNullable: true }),
 	});
 
 	public showPWD = false;
 
+	ngOnDestroy() {
+		this.memorizeCredentials();
+	}
+
 	login() {
-		this.berstaSignalStore.doLogin({
+    this.showPWD=false;
+		this.memorizeCredentials();
+		this.berstaSignalStore.doLogin();
+	}
+
+	private memorizeCredentials() {
+		this.berstaSignalStore.setCredentials({
 			username: this.formGroup.controls.username.value,
 			password: this.formGroup.controls.password.value,
 		});

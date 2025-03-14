@@ -10,9 +10,9 @@
 	text-overflow: ellipsis;
 	white-space: nowrap; /* Prevent text from wrapping */
 }
-	:host {
-		width: 100%;
-	}
+:host {
+	width: 100%;
+}
 
 mat-form-field {
 	width: inherit;

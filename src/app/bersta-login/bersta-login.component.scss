@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 mat-card {
 	max-width: 400px;
 }
@@ -5,6 +7,18 @@ mat-form-field {
 	//min-width: 400px;
 	width: 100%;
 }
-.loginSuccess {
+
+mat-card-actions {
+	display: flex;
 	justify-content: space-between;
+	align-self: center;
+	width: 100%;
+
+	.login-message {
+		display: flex;
+	}
+}
+
+.mat-icon-warning {
+	color: mat.m2-get-color-from-palette(mat.$m2-pink-palette, 600);
 }

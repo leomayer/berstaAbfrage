@@ -1,10 +1,12 @@
 import { computed, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { withExcelStatus } from './app-signal-Excelfeature-store';
 import { withRequestStatus } from './app-signal-feature-store';
+import { routes } from './app.routes';
 import { BerstaService } from './common/bersta.service';
 import {
-	BerstaLoginUI,
+	BerstaLoginCredentials,
 	BerstaProductDetail,
 	BerstaRequestStates,
 	BerstaUrls,
@@ -12,10 +14,10 @@ import {
 } from './common/berstaTypes';
 
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
-import { Router } from '@angular/router';
-import { routes } from './app.routes';
 
-const initBerstaState: BerstaRequestStates & BerstaUrls = {
+const initBerstaState: BerstaRequestStates & BerstaUrls & BerstaLoginCredentials = {
+	username: '',
+	password: '',
 	msgKey: 'unknown',
 	token: '',
 	productQueryResult: [],
@@ -29,14 +31,42 @@ export const BerstaStore = signalStore(
 	withState(initBerstaState),
 	withRequestStatus(),
 	withExcelStatus(),
+	withComputed((state) => {
+		return {
+			isLogggedIn: computed(() => state.msgKey() === 'login.successful'),
+			areCreditialsWrong: computed(() => state.msgKey() === 'error.authProv.userOrPasswordWrong'),
+			disableQuery4Details: computed(() => state.msgKey() !== 'login.successful' || !state.isFulfilled()),
+			isProductTableEnabled: computed(() => state.msgKey() === 'login.successful' && state.isFulfilled()),
+			isTableEntrySelect: computed(() => state.currentProduct().sid > 0),
+			getSelectedProductId: computed(() => state.currentProduct().sid),
+			getCurrentPriceDetails: computed(() => {
+				const priceDet = state.currentProduct().priceListPos;
+				if (priceDet) {
+					return priceDet[0];
+				}
+				return undefined;
+			}),
+			hasUnitsDifference: computed(() => {
+				const priceDet = state.currentProduct().priceListPos;
+				if (priceDet) {
+					return priceDet[0].singleUnitPrice !== priceDet[0].singleUnitPricePriceList;
+				}
+				return false;
+			}),
+		};
+	}),
 	withMethods((state) => {
 		const berstaClient = inject(BerstaService);
-  const router= inject(Router);
+		const router = inject(Router);
 		return {
-			async doLogin(loginData: BerstaLoginUI) {
+			setCredentials(loginData: BerstaLoginCredentials) {
+				patchState(state, loginData);
+			},
+			async doLogin() {
 				state.setPending();
 				const result = await berstaClient.doLogin({
-					...loginData,
+					username: state.username(),
+					password: state.password(),
 					berstaUrl: state.loginUrl(),
 				});
 				patchState(state, {
@@ -44,7 +74,9 @@ export const BerstaStore = signalStore(
 					token: result.token,
 				});
 				state.setFulfilled();
-        void router.navigate([routes[1].path]);
+				if (state.isLogggedIn()) {
+					void router.navigate([routes[1].path]);
+				}
 			},
 			async doQueryDetails(filter: string) {
 				state.setPending();
@@ -64,29 +96,6 @@ export const BerstaStore = signalStore(
 			saveUrls(loginUrl: string, productQueryUrl: string) {
 				patchState(state, { loginUrl, productQueryUrl });
 			},
-		};
-	}),
-	withComputed((state) => {
-		return {
-			isLogggedIn: computed(() => state.msgKey() === 'login.successful'),
-			disableQuery4Details: computed(() => state.msgKey() !== 'login.successful' || !state.isFulfilled()),
-			isProductTableEnabled: computed(() => state.msgKey() === 'login.successful' && state.isFulfilled()),
-			isTableEntrySelect: computed(() => state.currentProduct().sid > 0),
-			getSelectedProductId: computed(() => state.currentProduct().sid),
-			getCurrentPriceDetails: computed(() => {
-				const priceDet = state.currentProduct().priceListPos;
-				if (priceDet) {
-					return priceDet[0];
-				}
-				return undefined;
-			}),
-			hasUnitsDifference: computed(() => {
-				const priceDet = state.currentProduct().priceListPos;
-				if (priceDet) {
-					return priceDet[0].singleUnitPrice !== priceDet[0].singleUnitPricePriceList;
-				}
-				return false;
-			}),
 		};
 	}),
 );

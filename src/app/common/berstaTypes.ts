@@ -1,8 +1,4 @@
-export type BerstaLoginUI = {
-	username: string;
-	password: string;
-};
-export type BerstaLoginHttp = BerstaLoginUI & {
+export type BerstaLoginHttp = BerstaLoginCredentials & {
 	berstaUrl: string;
 };
 export type BerstaProductPriceDetail = {
@@ -37,6 +33,10 @@ export type BerstaProductDetailHttp = {
 export type ExcelQuery = {
 	searchText: string;
 	articleNo: string;
+};
+export type BerstaLoginCredentials = {
+	username: string;
+	password: string;
 };
 export type BerstaUrls = {
 	loginUrl: string;

@@ -3,7 +3,11 @@
 		<div>#&nbsp;{{ berstaStore.currentProduct().articleNr }} - {{ berstaStore.currentProduct().name }}:</div>
 		<mat-form-field>
 			<mat-label>Preis</mat-label>
-			<input matInput [readonly]="true" value="{{ berstaStore.currentProduct().priceListPos[0].singleUnitPrice.toFixed(2) }}" />
+			<input
+				matInput
+				[readonly]="true"
+				value="{{ berstaStore.currentProduct().priceListPos[0].singleUnitPrice.toFixed(2) }}"
+			/>
 		</mat-form-field>
 	</div>
 	@if (berstaStore.hasUnitsDifference()) {
