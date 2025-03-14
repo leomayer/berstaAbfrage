@@ -12,6 +12,8 @@ import {
 } from './common/berstaTypes';
 
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { Router } from '@angular/router';
+import { routes } from './app.routes';
 
 const initBerstaState: BerstaRequestStates & BerstaUrls = {
 	msgKey: 'unknown',
@@ -29,6 +31,7 @@ export const BerstaStore = signalStore(
 	withExcelStatus(),
 	withMethods((state) => {
 		const berstaClient = inject(BerstaService);
+  const router= inject(Router);
 		return {
 			async doLogin(loginData: BerstaLoginUI) {
 				state.setPending();
@@ -41,6 +44,7 @@ export const BerstaStore = signalStore(
 					token: result.token,
 				});
 				state.setFulfilled();
+        void router.navigate([routes[1].path]);
 			},
 			async doQueryDetails(filter: string) {
 				state.setPending();
