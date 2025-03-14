@@ -6,7 +6,6 @@
 .searchUrl,
 .searchInput {
 	display: flex;
-	flex-direction: column;
 	flex-direction: row;
 	align-items: center;
 	gap: 8px;
@@ -20,4 +19,7 @@ mat-form-field {
 }
 mat-form-field.bersta-no {
 	width: 150px;
+}
+.debug {
+	margin-left: auto;
 }

@@ -14,7 +14,8 @@ import { BerstaStore } from '../../app-signal-store';
 	styleUrl: './bersta-detail-url.component.scss',
 })
 export class BerstaDetailUrlComponent {
-	searchFilter = 'Poccocinio';
+	//searchFilter = 'Poccocinio';
+	searchFilter = 'Brot';
 	searchWithArticelNo = '2005';
 	queryString = '';
 	berstaStore = inject(BerstaStore);

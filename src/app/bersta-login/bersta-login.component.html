@@ -20,8 +20,8 @@
 	</mat-card-content>
 	<mat-card-actions [class.loginSuccess]="berstaSignalStore.isLogggedIn()" align="start">
 		<button mat-raised-button matRipple (click)="login()">Log in </button>
-    @if (berstaSignalStore.isLogggedIn()) {
-      <div> Logged in 🎉 </div>
-    }
+		@if (berstaSignalStore.isLogggedIn()) {
+			<div> Logged in 🎉 </div>
+		}
 	</mat-card-actions>
 </mat-card>
