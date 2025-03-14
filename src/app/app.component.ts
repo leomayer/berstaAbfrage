@@ -64,16 +64,20 @@ export class AppComponent implements OnInit {
 	}
 
 	selectNavItem(route: string): void {
-		this.router.navigate([route]);
+		this.router.navigate([route]).then(() => {
+       this.sidenav().close();
+       // set the collapsed properly for the next update
+      this.isCollapsed = !this.isMobile;
+    });
 	}
 
 	toggleMenu() {
 		if (this.isMobile) {
-			this.sidenav().toggle();
-			this.isCollapsed = false; // On mobile, the menu can never be collapsed
+      this.isCollapsed = false; // On mobile, the menu can never be collapsed
+      this.sidenav().toggle();
 		} else {
-			this.sidenav().open(); // On desktop/tablet, the menu can never be fully closed
-			this.isCollapsed = !this.isCollapsed;
+      this.isCollapsed = !this.isCollapsed;
+      this.sidenav().open(); // On desktop/tablet, the menu can never be fully closed
 		}
 	}
 
