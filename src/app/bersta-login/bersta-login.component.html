@@ -11,7 +11,7 @@
 				<mat-form-field>
 					<mat-label>Password</mat-label>
 					<input formControlName="password" matInput (keydown.enter)="login()" [type]="showPWD ? 'text' : 'password'" />
-					<button mat-icon-button matSuffix (click)="toggleVisibility(); $event.preventDefault()">
+					<button mat-icon-button matSuffix (click)="toggleVisibility(); $event.preventDefault()" >
 						<mat-icon>{{ showPWD ? 'visibility' : 'visibility_off' }}</mat-icon>
 					</button>
 				</mat-form-field>
