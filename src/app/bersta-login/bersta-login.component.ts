@@ -30,7 +30,7 @@ export class BerstaLoginComponent {
 	berstaSignalStore = inject(BerstaStore);
 
 	formGroup = new FormGroup({
-		username: new FormControl('bestellung@1korn.at', { nonNullable: true }),
+		username: new FormControl('', { nonNullable: true }),
 		password: new FormControl('', { nonNullable: true }),
 	});
 
