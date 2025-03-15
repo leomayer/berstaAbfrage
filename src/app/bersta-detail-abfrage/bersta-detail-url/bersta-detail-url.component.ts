@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInput, MatInputModule } from '@angular/material/input';
 
 import { BerstaStore } from '../../app-signal-store';
+import { padArticleNoWithZeros } from '../../common/berstaTypes';
 
 @Component({
 	selector: 'app-bersta-detail-url',
@@ -37,17 +38,8 @@ export class BerstaDetailUrlComponent {
 		this.query();
 	}
 	queryByArticelNo() {
-		this.queryString = this.padArticleNoWithZeros();
+		this.queryString = padArticleNoWithZeros(this.searchWithArticelNo);
 		this.query();
-	}
-
-	padArticleNoWithZeros() {
-		const num = Number(this.searchWithArticelNo); // Use Number for more flexible parsing
-		if (isNaN(num)) {
-			return this.searchWithArticelNo; // Handle cases where the string isn't a valid number.
-		}
-		const integerPart = Math.floor(num); // Ensure we only use the integer part.
-		return integerPart.toString().padStart(6, '0');
 	}
 
 	private query() {

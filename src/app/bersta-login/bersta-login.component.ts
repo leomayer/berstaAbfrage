@@ -41,7 +41,7 @@ export class BerstaLoginComponent implements OnDestroy {
 	}
 
 	login() {
-    this.showPWD=false;
+		this.showPWD = false;
 		this.memorizeCredentials();
 		this.berstaSignalStore.doLogin();
 	}

@@ -7,6 +7,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { BerstaStore } from '../../app-signal-store';
+import { padArticleNoWithZeros } from '../../common/berstaTypes';
 
 export type CalcDetails = {
 	label: string;
@@ -67,6 +68,16 @@ export class BerstaExcelInputComponent {
 		return emptyResponse;
 	});
 
+	detailSearchResult = computed(() => {
+		const currentProduct = this.berstaStore.currentProduct();
+		if (currentProduct.articleNr) {
+			const neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
+			return `${currentProduct.articleNr}: ${currentProduct.name} von ${currentProduct.producer} ⇒ € ${neuerPreis}`;
+		} else {
+			return 'Keine Suche durchgeführt';
+		}
+	});
+
 	transferInput() {
 		this.cols4Excel = this.excelRow.split('\t');
 		if (this.cols4Excel.length === 14) {
@@ -77,6 +88,7 @@ export class BerstaExcelInputComponent {
 	searchBersta() {
 		this.cols4Excel = this.excelRow.split('\t');
 
-		this.berstaStore.doQueryByExcel(this.cols4Excel[this.colSpalteName], this.cols4Excel[this.colSpalteArtikelId]);
+		const articleNo = this.cols4Excel[this.colSpalteArtikelId];
+		this.berstaStore.doQueryByExcel(this.cols4Excel[this.colSpalteName], padArticleNoWithZeros(articleNo));
 	}
 }

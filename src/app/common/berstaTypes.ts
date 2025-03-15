@@ -1,3 +1,12 @@
+export const padArticleNoWithZeros = (articleNo: string): string => {
+	const num = Number(articleNo); // Use Number for more flexible parsing
+	if (isNaN(num)) {
+		return articleNo; // Handle cases where the string isn't a valid number.
+	}
+	const integerPart = Math.floor(num); // Ensure we only use the integer part.
+	return integerPart.toString().padStart(6, '0');
+};
+
 export type BerstaLoginHttp = BerstaLoginCredentials & {
 	berstaUrl: string;
 };

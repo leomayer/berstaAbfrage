@@ -92,6 +92,11 @@ export const BerstaStore = signalStore(
 			},
 			doQueryByExcel(searchText: string, articleNo: string) {
 				patchState(state, { excelQuery: { articleNo, searchText } });
+				if (articleNo) {
+					void this.doQueryDetails(articleNo);
+				} else {
+					void this.doQueryDetails(searchText);
+				}
 			},
 			saveUrls(loginUrl: string, productQueryUrl: string) {
 				patchState(state, { loginUrl, productQueryUrl });

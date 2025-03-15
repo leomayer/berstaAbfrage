@@ -7,7 +7,7 @@
 	</mat-toolbar>
 </div>
 <mat-sidenav-container [hasBackdrop]="true" autosize>
-  <!--
+	<!--
     <mat-sidenav
       (opened)="isMobile && openCollapsed()"
       [opened]="!isMobile"
@@ -17,7 +17,7 @@
       [mode]="isMobile ? 'over' : 'side'"
     >
     -->
-  <mat-sidenav [opened]="true" [fixedInViewport]="true" [fixedTopGap]="64" [fixedBottomGap]="40" [mode]="'side'">
+	<mat-sidenav [opened]="true" [fixedInViewport]="true" [fixedTopGap]="64" [fixedBottomGap]="40" [mode]="'side'">
 		<mat-nav-list>
 			@for (nav of navItems; track nav.icon) {
 				<a mat-list-item (click)="selectNavItem(nav.route)" [class.active-link]="activeRoute === nav.route">
