@@ -3,7 +3,7 @@ import { MatCard, MatCardContent, MatCardFooter, MatCardHeader } from '@angular/
 import { MatFormField } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 
-import { BerstaDetailUrlComponent } from './bersta-detail-url/bersta-detail-url.component';
+import { BerstaInput4queryComponent } from './bersta-input4query/bersta-input4query.component';
 import { BerstaSelectedProductComponent } from './bersta-selected-product/bersta-selected-product.component';
 import { TableOfProductsComponent } from './table-of-products/table-of-products.component';
 
@@ -13,7 +13,7 @@ import { TableOfProductsComponent } from './table-of-products/table-of-products.
 		MatCard,
 		MatCardContent,
 		MatCardHeader,
-		BerstaDetailUrlComponent,
+		BerstaInput4queryComponent,
 		TableOfProductsComponent,
 		MatCardFooter,
 		BerstaSelectedProductComponent,

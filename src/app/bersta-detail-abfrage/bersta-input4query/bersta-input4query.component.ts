@@ -9,12 +9,12 @@ import { BerstaStore } from '../../app-signal-store';
 import { padArticleNoWithZeros } from '../../common/berstaTypes';
 
 @Component({
-	selector: 'app-bersta-detail-url',
+	selector: 'app-bersta-input4query',
 	imports: [MatInput, MatFormField, MatInputModule, MatButtonModule, FormsModule, MatIconModule],
-	templateUrl: './bersta-detail-url.component.html',
-	styleUrl: './bersta-detail-url.component.scss',
+	templateUrl: './bersta-input4query.component.html',
+	styleUrl: './bersta-input4query.component.scss',
 })
-export class BerstaDetailUrlComponent {
+export class BerstaInput4queryComponent {
 	//searchFilter = 'Poccocinio';
 	searchFilter = 'Brot';
 	searchWithArticelNo = '2005';

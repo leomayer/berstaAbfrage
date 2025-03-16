@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BerstaDetailUrlComponent } from './bersta-detail-url.component';
+import { BerstaInput4queryComponent } from './bersta-input4query.component';
 
 describe('BerstaDetailUrlComponent', () => {
-	let component: BerstaDetailUrlComponent;
-	let fixture: ComponentFixture<BerstaDetailUrlComponent>;
+	let component: BerstaInput4queryComponent;
+	let fixture: ComponentFixture<BerstaInput4queryComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [BerstaDetailUrlComponent],
+			imports: [BerstaInput4queryComponent],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(BerstaDetailUrlComponent);
+		fixture = TestBed.createComponent(BerstaInput4queryComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
