@@ -19,18 +19,20 @@
 		>
 		@if (cols4Excel.length > 0) {
 			Spalten: {{ cols4Excel.length }}
-			@if (cols4Excel.length === 14) {
+			@if (cols4Excel.length >= 14) {
 				<mat-icon>verified</mat-icon>
-				<button mat-flat-button (click)="searchBersta()">Suchen</button>
-				{{ diffLabel() }}
+			<span>Daten können automatisch übernommen werden</span>
+
 			}
 		}
 	</div>
 </div>
+{{ diffLabel() }}
+
 @if (calcEnheitsPreisPlusMwst().label) {
 	<div
 		>{{ calcEnheitsPreisPlusMwst().label }}
-		<span>
+		<span class="diff">
 			{{ calcEnheitsPreisPlusMwst().preis }}
 		</span>
 	</div>

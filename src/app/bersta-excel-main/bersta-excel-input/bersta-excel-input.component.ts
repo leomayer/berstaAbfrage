@@ -80,15 +80,9 @@ export class BerstaExcelInputComponent {
 
 	transferInput() {
 		this.cols4Excel = this.excelRow.split('\t');
-		if (this.cols4Excel.length === 14) {
-			this.searchBersta();
+		if (this.cols4Excel.length >= 14) {
+      const articleNo = this.cols4Excel[this.colSpalteArtikelId];
+      this.berstaStore.doQueryByExcel(this.cols4Excel[this.colSpalteName], padArticleNoWithZeros(articleNo));
 		}
-	}
-
-	searchBersta() {
-		this.cols4Excel = this.excelRow.split('\t');
-
-		const articleNo = this.cols4Excel[this.colSpalteArtikelId];
-		this.berstaStore.doQueryByExcel(this.cols4Excel[this.colSpalteName], padArticleNoWithZeros(articleNo));
 	}
 }

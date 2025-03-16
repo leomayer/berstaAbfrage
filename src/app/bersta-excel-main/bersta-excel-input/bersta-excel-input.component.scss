@@ -17,7 +17,7 @@ mat-form-field {
 	gap: 8px;
 	width: 100%;
 }
-span {
+span.diff {
 	margin-inline: 8px;
 	background-color: mat.m2-get-color-from-palette(mat.$m2-teal-palette, 50);
 	color: mat.m2-get-contrast-color-from-palette(mat.$m2-teal-palette, 50);
