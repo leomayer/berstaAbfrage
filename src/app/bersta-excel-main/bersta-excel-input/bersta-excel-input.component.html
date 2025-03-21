@@ -21,13 +21,12 @@
 			Spalten: {{ cols4Excel.length }}
 			@if (cols4Excel.length >= 14) {
 				<mat-icon>verified</mat-icon>
-			<span>Daten können automatisch übernommen werden</span>
-
+				<span>Daten können automatisch übernommen werden</span>
 			}
 		}
 	</div>
 </div>
-{{ diffLabel() }}
+<app-bersta-preis-diff [cols4Excel]="cols4Excel" />
 
 @if (calcEnheitsPreisPlusMwst().label) {
 	<div

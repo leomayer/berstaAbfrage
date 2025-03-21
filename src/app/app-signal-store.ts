@@ -75,7 +75,7 @@ export const BerstaStore = signalStore(
 				});
 				state.setFulfilled();
 				if (state.isLogggedIn()) {
-					void router.navigate([routes[1].path]);
+					void router.navigate([routes[2].path]);
 				}
 			},
 			async doQueryDetails(filter: string) {

@@ -1,0 +1,36 @@
+{{ diffLabel() }}
+
+<table mat-table [dataSource]="comparisonData()">
+	<ng-container matColumnDef="field">
+		<th *matHeaderCellDef mat-header-cell></th>
+		<td *matCellDef="let element" mat-cell>{{ element.field }}</td>
+	</ng-container>
+
+	<ng-container matColumnDef="oldValue">
+		<th *matHeaderCellDef mat-header-cell>Alt</th>
+
+		<td *matCellDef="let element" mat-cell>
+			{{ element.oldValue }}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="newValue">
+		<th *matHeaderCellDef mat-header-cell>Alt</th>
+
+		<td *matCellDef="let element" mat-cell>
+			{{ element.newValue }}
+		</td>
+	</ng-container>
+
+	<ng-container matColumnDef="diff">
+		<th *matHeaderCellDef mat-header-cell>Unterschied</th>
+		<td *matCellDef="let element" mat-cell [class]="element.diff.tdClass">
+			@for (part of element.diff.diffParts; track part) {
+				<span [class]="part.cssClass">{{ part.value }}</span>
+			}
+		</td>
+	</ng-container>
+
+	<tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+	<tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+</table>

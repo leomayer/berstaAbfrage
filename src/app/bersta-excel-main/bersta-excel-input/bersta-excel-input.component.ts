@@ -1,4 +1,3 @@
-import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, Signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,51 +7,40 @@ import { MatInputModule } from '@angular/material/input';
 
 import { BerstaStore } from '../../app-signal-store';
 import { padArticleNoWithZeros } from '../../common/berstaTypes';
+import { BerstaPreisDiffComponent } from '../bersta-preis-diff/bersta-preis-diff.component';
 
 export type CalcDetails = {
 	label: string;
 	preis: number;
 };
+export enum ExcelCols {
+	ArtikelId = 1,
+	Name = 2,
+	Preis = 7,
+	Mwst = 8,
+}
 
 @Component({
 	selector: 'app-bersta-excel-input',
-	imports: [MatInputModule, MatFormFieldModule, MatButtonModule, FormsModule, MatIcon],
+	imports: [MatInputModule, MatFormFieldModule, MatButtonModule, FormsModule, MatIcon, BerstaPreisDiffComponent],
 	templateUrl: './bersta-excel-input.component.html',
 	styleUrl: './bersta-excel-input.component.scss',
 })
 export class BerstaExcelInputComponent {
 	excelRow = '';
-	colSpalteArtikelId = 1;
-	colSpalteName = 2;
-	colSpaltePreis = 7;
-	colSpalteMwst = 8;
 	cols4Excel: string[] = [];
-
-	clipboard = inject(Clipboard);
 
 	berstaStore = inject(BerstaStore);
 
-	diffLabel = computed(() => {
-		const alterPreis = Number(this.cols4Excel[this.colSpaltePreis]);
-		// Preis ist auch NUR gerundet in der Foodcop
-		const neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
-		if (alterPreis === neuerPreis) {
-			return 'Unveränderter Preis';
-		} else {
-			this.clipboard.copy(neuerPreis + '');
-			return alterPreis + ' ==>' + neuerPreis + ' (in clipboard)';
-		}
-	});
-
 	calcEnheitsPreisPlusMwst: Signal<CalcDetails> = computed(() => {
-		const alterPreis = Number(this.cols4Excel[this.colSpaltePreis]);
+		const alterPreis = Number(this.cols4Excel[ExcelCols.Preis]);
 		const emptyResponse = {
 			label: '',
 			preis: 0,
 		};
 		try {
 			if (alterPreis !== this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice) {
-				const mwst = Number(this.cols4Excel[this.colSpalteMwst]);
+				const mwst = Number(this.cols4Excel[ExcelCols.Mwst]);
 				if (mwst > 0) {
 					const bruttoPreis =
 						(this.berstaStore.currentProduct().priceListPos[0].singleUnitPricePriceList * (100 + mwst)) / 100;
@@ -81,8 +69,8 @@ export class BerstaExcelInputComponent {
 	transferInput() {
 		this.cols4Excel = this.excelRow.split('\t');
 		if (this.cols4Excel.length >= 14) {
-      const articleNo = this.cols4Excel[this.colSpalteArtikelId];
-      this.berstaStore.doQueryByExcel(this.cols4Excel[this.colSpalteName], padArticleNoWithZeros(articleNo));
+			const articleNo = this.cols4Excel[ExcelCols.ArtikelId];
+			this.berstaStore.doQueryByExcel(this.cols4Excel[ExcelCols.Name], padArticleNoWithZeros(articleNo));
 		}
 	}
 }

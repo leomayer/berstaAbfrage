@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+:host {
+	&::ng-deep .ins {
+		background-color: mat.m2-get-color-from-palette(mat.$m2-light-green-palette, A100);
+		color: mat.m2-get-contrast-color-from-palette(mat.$m2-light-green-palette, A100);
+	}
+	&::ng-deep .del {
+		background-color: mat.m2-get-color-from-palette(mat.$m2-red-palette, 100);
+		color: mat.m2-get-contrast-color-from-palette(mat.$m2-red-palette, 100);
+		text-decoration: line-through;
+	}
+	&::ng-deep .unchanged {
+		font-weight: bold;
+		text-align: center;
+	}
+}
