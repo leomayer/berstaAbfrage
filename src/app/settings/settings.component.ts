@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,7 @@ import { BerstaStore } from '../app-signal-store';
 	templateUrl: './settings.component.html',
 	styleUrl: './settings.component.scss',
 })
-export class SettingsComponent implements OnDestroy {
+export class SettingsComponent implements OnInit, OnDestroy {
 	berstaStore = inject(BerstaStore);
 
 	formGroup = new FormGroup({
@@ -20,10 +20,22 @@ export class SettingsComponent implements OnDestroy {
 		berstaProductQueryUrl: new FormControl(this.berstaStore.productQueryUrl(), { nonNullable: true }),
 	});
 
+	screenSize = '';
+
+	ngOnInit() {
+		this.onResize();
+	}
+
 	ngOnDestroy() {
 		this.berstaStore.saveUrls(
 			this.formGroup.controls.berstaLoginUrl.value,
 			this.formGroup.controls.berstaProductQueryUrl.value,
 		);
 	}
+
+	onResize() {
+		this.screenSize = `Screensize: ${window.innerWidth} x ${window.innerHeight} (Breite x Höhe)`;
+	}
+
+	protected readonly window = window;
 }

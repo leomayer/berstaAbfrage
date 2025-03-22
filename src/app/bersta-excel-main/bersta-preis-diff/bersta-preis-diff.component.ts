@@ -48,7 +48,7 @@ export class BerstaPreisDiffComponent {
 		// Preis ist auch NUR gerundet in der Foodcop
 		const neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
 
-		return[
+		return [
 			this.createRowLabel('Beschreibung', this.cols4Excel()[ExcelCols.Name], this.berstaStore.currentProduct().name),
 			this.createRowLabel('Preis', `€ ${alterPreis.toFixed(2)}`, `€ ${neuerPreis.toFixed(2)}`),
 			this.createRowLabel('Einheit', '1000', '1000'),

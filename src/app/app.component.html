@@ -38,7 +38,7 @@
 	</mat-sidenav-content>
 </mat-sidenav-container>
 
-<div class="buildInfo">
+<div class="buildInfo" [class.small-screen]="isSmallScreen">
 	<mat-icon>hourglass_bottom</mat-icon>
 	<span> Build: {{ buildInfo.buildTime | date: 'yyyy-MM-dd HH:mm' }} </span>
 

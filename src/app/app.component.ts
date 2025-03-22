@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, VERSION, viewChild } from '@angular/core';
+import { AfterViewInit, Component, VERSION, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -30,11 +30,12 @@ import { filter } from 'rxjs';
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements AfterViewInit {
 	title = 'Bersta-Preise: Abfrage & Foodsoft';
 	protected readonly buildInfo = buildInfo;
 	protected readonly version = VERSION;
 	isMobile = true;
+	isSmallScreen = false;
 	isCollapsed = false;
 	activeRoute: string = '';
 
@@ -51,12 +52,17 @@ export class AppComponent implements OnInit {
 		private observer: BreakpointObserver,
 		private router: Router,
 	) {
+		this.isSmallScreen = this.observer.isMatched('(max-width: 352px)');
 		this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: any) => {
 			this.activeRoute = event.urlAfterRedirects;
 		});
 	}
 
-	ngOnInit() {
+	ngAfterViewInit() {
+		this.observer.observe(['(min-width: 352px)']).subscribe(() => {
+			this.isSmallScreen = true;
+		});
+
 		this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
 			this.isMobile = screenSize.matches;
 			this.isCollapsed = screenSize.matches;
