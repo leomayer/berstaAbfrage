@@ -108,7 +108,7 @@ mat-sidenav-container {
 	margin-block: 8px;
 	font-size: small;
 
-	&.small-screen {
+	@media screen and (max-width: 352px) {
 		margin-inline: 4px;
 		& app-angular-title {
 			padding-inline: 4px;

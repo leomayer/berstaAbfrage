@@ -4,7 +4,8 @@
 	width: 100%;
 }
 .searchUrl,
-.searchInput {
+.searchInput,
+.col {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -22,4 +23,15 @@ mat-form-field.bersta-no {
 }
 .debug {
 	margin-left: auto;
+}
+@media screen and (max-width: 400px) {
+	.searchInput {
+		flex-flow: wrap;
+		& mat-form-field {
+			width: 100%;
+		}
+	}
+	.debug {
+		margin-block-end: 8px;
+	}
 }

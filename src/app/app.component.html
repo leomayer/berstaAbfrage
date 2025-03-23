@@ -23,7 +23,7 @@
 				<a mat-list-item (click)="selectNavItem(nav.route)" [class.active-link]="activeRoute === nav.route">
 					<span class="entry" [class.active-link]="activeRoute === nav.route">
 						<mat-icon matListItemIcon>{{ nav.icon }}</mat-icon>
-						@if (!isCollapsed) {
+						@if (!isCollapsed()) {
 							<span>{{ nav.label }}</span>
 						}
 					</span>
@@ -38,7 +38,7 @@
 	</mat-sidenav-content>
 </mat-sidenav-container>
 
-<div class="buildInfo" [class.small-screen]="isSmallScreen">
+<div class="buildInfo">
 	<mat-icon>hourglass_bottom</mat-icon>
 	<span> Build: {{ buildInfo.buildTime | date: 'yyyy-MM-dd HH:mm' }} </span>
 

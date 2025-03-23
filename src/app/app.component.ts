@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, VERSION,  viewChild } from '@angular/core';
+import { AfterViewInit, Component, VERSION, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -8,12 +8,22 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
+
+
 import { AngularTitleComponent } from './angular-title/angular-title.component';
+
+
 
 //
 import buildInfo from '../assets/buildDate.json';
 
+
+
 import { filter } from 'rxjs';
+
+
+
+
 
 @Component({
 	selector: 'app-root',
@@ -35,8 +45,7 @@ export class AppComponent implements AfterViewInit {
 	protected readonly buildInfo = buildInfo;
 	protected readonly version = VERSION;
 	isMobile = true;
-	isSmallScreen = false;
-	isCollapsed = false;
+	isCollapsed = signal(false);
 	activeRoute: string = '';
 
 	navItems = [
@@ -52,23 +61,15 @@ export class AppComponent implements AfterViewInit {
 		private observer: BreakpointObserver,
 		private router: Router,
 	) {
-		this.isSmallScreen = this.observer.isMatched('(max-width: 352px)');
 		this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event: any) => {
 			this.activeRoute = event.urlAfterRedirects;
 		});
 	}
 
 	ngAfterViewInit() {
-		this.observer.observe(['(min-width: 353px)']).subscribe(() => {
-			this.isSmallScreen = false;
-		});
-		this.observer.observe(['(max-width: 352px)']).subscribe(() => {
-			this.isSmallScreen = true;
-		});
-
 		this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
 			this.isMobile = screenSize.matches;
-			this.isCollapsed = screenSize.matches;
+			this.isCollapsed.set(screenSize.matches);
 		});
 	}
 
@@ -76,21 +77,21 @@ export class AppComponent implements AfterViewInit {
 		this.router.navigate([route]).then(() => {
 			this.sidenav().close();
 			// set the collapsed properly for the next update
-			this.isCollapsed = !this.isMobile;
+			this.isCollapsed.set(!this.isMobile);
 		});
 	}
 
 	toggleMenu() {
 		if (this.isMobile) {
-			this.isCollapsed = false; // On mobile, the menu can never be collapsed
+			this.isCollapsed.set(false); // On mobile, the menu can never be collapsed
 			this.sidenav().toggle();
 		} else {
-			this.isCollapsed = !this.isCollapsed;
+			this.isCollapsed.set(!this.isCollapsed);
 			this.sidenav().open(); // On desktop/tablet, the menu can never be fully closed
 		}
 	}
 
 	openCollapsed() {
-		this.isCollapsed = false;
+		this.isCollapsed.set(false);
 	}
 }

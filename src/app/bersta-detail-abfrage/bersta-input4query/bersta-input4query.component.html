@@ -22,29 +22,32 @@
 	<button mat-flat-button (click)="queryDetail()" [disabled]="berstaStore.disableQuery4Details()">Abfrage</button>
 </div>
 <div class="searchInput">
-	<mat-form-field class="bersta-no" [subscriptSizing]="'dynamic'">
-		<mat-label>Artikelnummer</mat-label>
-		<input
-			matInput
-			[(ngModel)]="searchWithArticelNo"
-			(keydown.enter)="queryByArticelNo()"
-			[disabled]="berstaStore.disableQuery4Details()"
-		/>
-		@if (searchWithArticelNo) {
-			<button
-				mat-icon-button
-				matSuffix
-				(click)="searchWithArticelNo = ''"
+	<div class="col">
+		<mat-form-field class="bersta-no" [subscriptSizing]="'dynamic'">
+			<mat-label>Artikelnummer</mat-label>
+			<input
+				matInput
+				[(ngModel)]="searchWithArticelNo"
+				(keydown.enter)="queryByArticelNo()"
 				[disabled]="berstaStore.disableQuery4Details()"
-				aria-label="Clear"
-			>
-				<mat-icon>close</mat-icon>
-			</button>
-		}
-	</mat-form-field>
-	<button mat-flat-button (click)="queryByArticelNo()" [disabled]="berstaStore.disableQuery4Details()"
-		>Artikel-Suche</button
-	>
-
-	<div class="debug">Query: {{ queryString }}</div>
+			/>
+			@if (searchWithArticelNo) {
+				<button
+					mat-icon-button
+					matSuffix
+					(click)="searchWithArticelNo = ''"
+					[disabled]="berstaStore.disableQuery4Details()"
+					aria-label="Clear"
+				>
+					<mat-icon>close</mat-icon>
+				</button>
+			}
+		</mat-form-field>
+		<button mat-flat-button (click)="queryByArticelNo()" [disabled]="berstaStore.disableQuery4Details()"
+			>Artikel-Suche</button
+		>
+	</div>
+	@if (queryString) {
+		<div class="debug">Query: {{ queryString }}</div>
+	}
 </div>
