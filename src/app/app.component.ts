@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, VERSION, viewChild } from '@angular/core';
+import { AfterViewInit, Component, VERSION,  viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -59,7 +59,10 @@ export class AppComponent implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.observer.observe(['(min-width: 352px)']).subscribe(() => {
+		this.observer.observe(['(min-width: 353px)']).subscribe(() => {
+			this.isSmallScreen = false;
+		});
+		this.observer.observe(['(max-width: 352px)']).subscribe(() => {
 			this.isSmallScreen = true;
 		});
 

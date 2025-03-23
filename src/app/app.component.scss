@@ -110,6 +110,9 @@ mat-sidenav-container {
 
 	&.small-screen {
 		margin-inline: 4px;
+		& app-angular-title {
+			padding-inline: 4px;
+		}
 	}
 	mat-icon,
 	span:first-of-type {
