@@ -44,16 +44,27 @@ export class BerstaPreisDiffComponent {
 
 	displayedColumns: string[] = ['field', 'oldValue', 'diff', 'newValue'];
 	comparisonData = computed<ComparisonItem[]>(() => {
-		const alterPreis = Math.round(Number(this.cols4Excel()[ExcelCols.Preis] ?? 0) * 100) / 100;
+		const alterPreis = this.formatPreis(this.cols4Excel()[ExcelCols.Preis]);
 		// Preis ist auch NUR gerundet in der Foodcop
-		const neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
+		const neuerPreis = this.formatPreis(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice + '');
 
 		return [
 			this.createRowLabel('Beschreibung', this.cols4Excel()[ExcelCols.Name], this.berstaStore.currentProduct().name),
-			this.createRowLabel('Preis', `€ ${alterPreis.toFixed(2)}`, `€ ${neuerPreis.toFixed(2)}`),
+			this.createRowLabel('Preis', alterPreis, neuerPreis),
 			this.createRowLabel('Einheit', '1000', '1000'),
 		];
 	});
+
+	/* if a price is given (not 0 and not undefined) - format it with €-sign. Otherwise, return an empty string*/
+	private formatPreis(preis: string) {
+		if (preis) {
+			const formated = Math.round(Number(this.cols4Excel()[ExcelCols.Preis] ?? 0) * 100) / 100;
+			if (formated) {
+				return `€ ${formated.toFixed(2)}`;
+			}
+		}
+		return '';
+	}
 
 	createRowLabel(field: string, oldValue: string, newValue: string): ComparisonItem {
 		return {
@@ -69,7 +80,7 @@ export class BerstaPreisDiffComponent {
 		const oldV = oldValue?.trim() ?? '';
 		const newV = newValue?.trim() ?? '';
 
-		if (oldV === newV) {
+		if (oldV === newV || oldV.length === 0 || newV.length === 0) {
 			ret.tdClass = 'unchanged';
 			ret.diffParts = [{ value: '—', cssClass: '' }];
 		} else {

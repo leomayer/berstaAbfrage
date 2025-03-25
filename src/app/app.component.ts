@@ -8,22 +8,12 @@ import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
-
-
 import { AngularTitleComponent } from './angular-title/angular-title.component';
-
-
 
 //
 import buildInfo from '../assets/buildDate.json';
 
-
-
 import { filter } from 'rxjs';
-
-
-
-
 
 @Component({
 	selector: 'app-root',
