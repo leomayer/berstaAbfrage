@@ -9,7 +9,7 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) 
 	/*
     Clone the request to add the authentication header - IF
     1. Not yet logged in
-    2. if the URL does NOT contain a 'login'
+    2. If the URL does NOT contain a 'login'
    */
 
 	if (berstaStore.isLogggedIn() && !req.url.includes('login')) {

@@ -54,7 +54,7 @@ export class BerstaPreisDiffComponent {
 		];
 	});
 
-	/* if a price is given (not 0 and not undefined) - format it with €-sign. Otherwise, return an empty string*/
+	/* If a price is given (not 0 and not undefined) - format it with €-sign. Otherwise, return an empty string*/
 	private formatPreis(preis: number) {
 		if (preis) {
 			return `€ ${preis.toFixed(2)}`;

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
-import { BerstaLoginHttp, BerstaProductDetail, BerstaProductDetailHttp, BerstaRequestStates } from './berstaTypes';
+import { BerstaLoginHttp, BerstaProductDetailHttp, BerstaRequestStates } from './berstaTypes';
 
 import { firstValueFrom } from 'rxjs';
 

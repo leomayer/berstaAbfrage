@@ -34,9 +34,6 @@ export const createEmptyBerstaProductDetail = (): BerstaProductDetail => {
 		priceListPos: [{ singleUnitPrice: 0, singleUnitPricePriceList: 0 }],
 	};
 };
-export const createEmptyBerstaProduct = (): BerstaProductDetail[] => {
-	return [createEmptyBerstaProductDetail()];
-};
 export type BerstaProductDetailHttp = {
 	products: BerstaProductDetail[];
 };

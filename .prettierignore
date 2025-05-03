@@ -1,4 +1,2 @@
 # Ignore artifacts:
 src/environments/.env.ts
-src/dto/documat.d.ts
-src/dto/webmodule-reference-management.d.ts

@@ -36,6 +36,4 @@ export class SettingsComponent implements OnInit, OnDestroy {
 	onResize() {
 		this.screenSize = `Screensize: ${window.innerWidth} x ${window.innerHeight} (Breite x Höhe)`;
 	}
-
-	protected readonly window = window;
 }

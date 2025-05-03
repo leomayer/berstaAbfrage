@@ -1,4 +1,3 @@
-import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, Signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +29,6 @@ export enum ExcelCols {
 export class BerstaExcelInputComponent {
 	excelRow = '';
 	cols4Excel: string[] = [];
-	clipboard = inject(Clipboard);
 
 	berstaStore = inject(BerstaStore);
 

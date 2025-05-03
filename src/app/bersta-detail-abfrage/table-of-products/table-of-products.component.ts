@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, ViewChild, effect, inject, viewChild } from '@angular/core';
+import { Component, effect, inject, viewChild } from '@angular/core';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 import { BerstaStore } from '../../app-signal-store';
-import { BerstaProductDetail, createEmptyBerstaProductDetail } from '../../common/berstaTypes';
+import { BerstaProductDetail } from '../../common/berstaTypes';
 
 @Component({
 	selector: 'app-table-of-products',

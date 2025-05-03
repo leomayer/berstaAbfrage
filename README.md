@@ -1,12 +1,12 @@
 # Bersta-Preise: Abfrage & Foodsoft 
 
-Das Projekt hat zum Ziel, die Produkte, die letztendlich in Foodsoft verwaltet werden, aus dem Bersta Online Shop abzufragen. Das Programm soll die Preisabfrage vereinfachen und einen kurzen Überblick geben.
+Das Projekt hat zum Ziel, die Produkte, die letztendlich in Foodsoft verwaltet werden, aus dem Bersta Online-Shop abzufragen. Das Programm soll die Preisabfrage vereinfachen und einen kurzen Überblick geben.
 
 Der Link zum [Programm](https://leomayer.github.io/berstaAbfrage).
 
 ## Hintergrund 
 
-Im Online Shop kann man ein Stichwort oder eine Artikelnummer suchen. Bersta verwendet die Artikelnummern 6-stellig, numerische und ganzahlig, mit führender Null.  
+Im Online-Shop kann man ein Stichwort oder eine Artikelnummer suchen. Bersta verwendet die Artikelnummern 6-stellig, numerische und ganzzahlig, mit führender Null.  
 
 ### Login
 
@@ -30,7 +30,8 @@ Im Eingabefeld kann man eine ganze Excel Zeile einfügen; die Werte je Spalte si
 
 Sofern die Suche nur einen Treffer ergeben hat, wird der Preis übernommen. Sofern der Preis in der 7. Spalte mit dem der Suche übereinstimmt, wird nur eine Benachrichtigung angezeigt. Ist der Preis unterschiedlich, wird der alte und der neue angezeigt. 
 
-Manche Bersta-Artikel sind selbst abzuwägen, weil diese zB nur nach `kg` berechnet werden. Es wird hier dann auch der Bruttopreis berechnet - die Mehrwertsteuer wird aus der 8. Spalte genommen. 
+Manche Bersta-Artikel sind selbst abzuwägen, weil diese z.B. nur nach `kg` berechnet werden. Es wird hier dann auch 
+der Bruttopreis berechnet - die Mehrwertsteuer wird aus der 8. Spalte genommen. 
 
 ## Entwicklung 
 
@@ -66,7 +67,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
  npm run deployBersta
 ```
 
-Deploys the project to the github pages (with properly set `base href`).
+Deploys the project to the GitHub pages (with properly set `base href`).
 
 ## Additional Resources
 
