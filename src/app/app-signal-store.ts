@@ -35,8 +35,12 @@ export const BerstaStore = signalStore(
 		return {
 			isLogggedIn: computed(() => state.msgKey() === 'login.successful'),
 			areCreditialsWrong: computed(() => state.msgKey() === 'error.authProv.userOrPasswordWrong'),
-			disableQuery4Details: computed(() => state.msgKey() !== 'login.successful' || !state.isFulfilled()),
-			isProductTableEnabled: computed(() => state.msgKey() === 'login.successful' && state.isFulfilled()),
+			disableQuery4Details: computed(
+				() => state.msgKey() !== 'login.successful' || !(state.isFulfilled() || state.isNothingFound()),
+			),
+			isProductTableEnabled: computed(
+				() => state.msgKey() === 'login.successful' && (state.isFulfilled() || state.isNothingFound()),
+			),
 			isTableEntrySelect: computed(() => state.currentProduct().sid > 0),
 			getSelectedProductId: computed(() => state.currentProduct().sid),
 			getCurrentPriceDetails: computed(() => {
@@ -82,10 +86,15 @@ export const BerstaStore = signalStore(
 				state.setPending();
 				const result = await berstaClient.doQueryDetails(state.productQueryUrl(), filter);
 				patchState(state, { productQueryResult: result.products });
-				if (state.productQueryResult().length === 1) {
-					this.doSetSelectedProduct(state.productQueryResult()[0]);
+				if (state.productQueryResult().length === 0) {
+					this.doSetSelectedProduct({} as BerstaProductDetail);
+					state.setNothingFound();
+				} else {
+					if (state.productQueryResult().length === 1) {
+						this.doSetSelectedProduct(state.productQueryResult()[0]);
+					}
+					state.setFulfilled();
 				}
-				state.setFulfilled();
 			},
 			doSetSelectedProduct(currentProduct: BerstaProductDetail) {
 				patchState(state, { currentProduct });

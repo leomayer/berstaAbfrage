@@ -21,6 +21,7 @@ export type BerstaProductDetail = {
 	netWeight: number;
 	producer: string;
 	priceListPos: BerstaProductPriceDetail[];
+	basePriceUnit: string;
 };
 export const createEmptyBerstaProductDetail = (): BerstaProductDetail => {
 	return {
@@ -29,6 +30,7 @@ export const createEmptyBerstaProductDetail = (): BerstaProductDetail => {
 		name: '',
 		netWeight: 0,
 		producer: '',
+		basePriceUnit: '',
 		priceListPos: [{ singleUnitPrice: 0, singleUnitPricePriceList: 0 }],
 	};
 };

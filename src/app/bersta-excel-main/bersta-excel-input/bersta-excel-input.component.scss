@@ -17,8 +17,20 @@ mat-form-field {
 	gap: 8px;
 	width: 100%;
 }
+.footer-1 button:last-child {
+	margin-left: auto;
+	background-color: mat.m2-get-color-from-palette(mat.$m2-lime-palette, 50);
+	color: mat.m2-get-contrast-color-from-palette(mat.$m2-lime-palette, 50);
+}
+
 span.diff {
 	margin-inline: 8px;
 	background-color: mat.m2-get-color-from-palette(mat.$m2-teal-palette, 50);
 	color: mat.m2-get-contrast-color-from-palette(mat.$m2-teal-palette, 50);
+}
+.nothingFound {
+	background-color: mat.m2-get-color-from-palette(mat.$m2-red-palette, 100);
+	padding: 8px;
+	color: mat.m2-get-contrast-color-from-palette(mat.$m2-red-palette, 100);
+	font-weight: bold;
 }

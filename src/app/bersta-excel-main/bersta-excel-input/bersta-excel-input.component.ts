@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, Signal, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +30,7 @@ export enum ExcelCols {
 export class BerstaExcelInputComponent {
 	excelRow = '';
 	cols4Excel: string[] = [];
+	clipboard = inject(Clipboard);
 
 	berstaStore = inject(BerstaStore);
 
@@ -61,8 +63,12 @@ export class BerstaExcelInputComponent {
 		if (currentProduct.articleNr) {
 			const neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
 			return `${currentProduct.articleNr}: ${currentProduct.name} von ${currentProduct.producer} ⇒ € ${neuerPreis}`;
-		} else {
+		} else if (this.berstaStore.isInit()) {
 			return 'Keine Suche durchgeführt';
+		} else if (this.berstaStore.isNothingFound()) {
+			return 'Suche bringt keine Ergebnisse!';
+		} else {
+			return 'Suche - in progress';
 		}
 	});
 
@@ -72,5 +78,10 @@ export class BerstaExcelInputComponent {
 			const articleNo = this.cols4Excel[ExcelCols.ArtikelId];
 			this.berstaStore.doQueryByExcel(this.cols4Excel[ExcelCols.Name], padArticleNoWithZeros(articleNo));
 		}
+	}
+
+	async insertClipboard() {
+		this.excelRow = await navigator.clipboard.readText();
+		this.transferInput();
 	}
 }

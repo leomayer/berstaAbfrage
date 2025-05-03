@@ -44,26 +44,22 @@ export class BerstaPreisDiffComponent {
 
 	displayedColumns: string[] = ['field', 'oldValue', 'diff', 'newValue'];
 	comparisonData = computed<ComparisonItem[]>(() => {
-		const alterPreis = this.formatPreis(this.cols4Excel()[ExcelCols.Preis]);
 		// Preis ist auch NUR gerundet in der Foodcop
-		const neuerPreis = this.formatPreis(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice + '');
+		let { alterPreis, neuerPreis } = this.getPreis();
 
 		return [
 			this.createRowLabel('Beschreibung', this.cols4Excel()[ExcelCols.Name], this.berstaStore.currentProduct().name),
-			this.createRowLabel('Preis', alterPreis, neuerPreis),
-			this.createRowLabel('Einheit', '1000', '1000'),
+			this.createRowLabel('Preis', this.formatPreis(alterPreis), this.formatPreis(neuerPreis)),
+			this.createRowLabel('Einheit', '', this.berstaStore.currentProduct().basePriceUnit ?? 'Nicht verfügbar'),
 		];
 	});
 
 	/* if a price is given (not 0 and not undefined) - format it with €-sign. Otherwise, return an empty string*/
-	private formatPreis(preis: string) {
+	private formatPreis(preis: number) {
 		if (preis) {
-			const formated = Math.round(Number(this.cols4Excel()[ExcelCols.Preis] ?? 0) * 100) / 100;
-			if (formated) {
-				return `€ ${formated.toFixed(2)}`;
-			}
+			return `€ ${preis.toFixed(2)}`;
 		}
-		return '';
+		return 'Kein Preis verfügbar';
 	}
 
 	createRowLabel(field: string, oldValue: string, newValue: string): ComparisonItem {
@@ -99,9 +95,7 @@ export class BerstaPreisDiffComponent {
 	}
 
 	diffLabel = computed(() => {
-		const alterPreis = Number(this.cols4Excel()[ExcelCols.Preis]);
-		// Preis ist auch NUR gerundet in der Foodcop
-		const neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
+		const { alterPreis, neuerPreis } = this.getPreis();
 		if (alterPreis === neuerPreis) {
 			return 'Unveränderter Preis';
 		} else if (alterPreis) {
@@ -110,4 +104,17 @@ export class BerstaPreisDiffComponent {
 		}
 		return '';
 	});
+
+	private getPreis() {
+		const alterPreis = Number(this.cols4Excel()[ExcelCols.Preis]);
+		// Preis ist auch NUR gerundet in der Foodcop
+		let neuerPreis;
+		if (this.berstaStore.currentProduct()?.priceListPos) {
+			neuerPreis = Math.round(this.berstaStore.currentProduct().priceListPos[0].singleUnitPrice * 100) / 100;
+		} else {
+			neuerPreis = NaN;
+		}
+
+		return { alterPreis, neuerPreis };
+	}
 }

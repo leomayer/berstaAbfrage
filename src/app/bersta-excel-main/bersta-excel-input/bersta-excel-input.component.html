@@ -22,8 +22,15 @@
 			@if (cols4Excel.length >= 14) {
 				<mat-icon>verified</mat-icon>
 				<span>Daten können automatisch übernommen werden</span>
+			} @else {
+				<mat-icon>warning</mat-icon>
+				<span>Daten werden erst mit genau 14 Spalten überprüft</span>
 			}
 		}
+		<button mat-stroked-button (click)="insertClipboard()">
+			<mat-icon>content_paste</mat-icon>
+			<span>von Clipboard holen</span>
+		</button>
 	</div>
 </div>
 <app-bersta-preis-diff [cols4Excel]="cols4Excel" />
@@ -36,4 +43,4 @@
 		</span>
 	</div>
 }
-<div>{{ detailSearchResult() }}</div>
+<div [class.nothingFound]="berstaStore.isNothingFound()">{{ detailSearchResult() }}</div>
